@@ -1,19 +1,19 @@
-<img [src]="currentEventData()?.photoUrl" [alt]="currentEventData()?.title" />
+<img [src]="eventData()?.photoUrl" [alt]="eventData()?.title" />
 <hr />
 <span
   >{{ currentEventDate().day }} de {{ currentEventDate().month }},
   {{ currentEventDate().year }}</span
 >
-<h2>{{ currentEventData()?.title }}</h2>
-<h3>{{ currentEventData()?.subtitle }}</h3>
+<h2>{{ eventData()?.title }}</h2>
+<h3>{{ eventData()?.subtitle }}</h3>
 <hr />
-@if (currentEventData()?.date) {
-  <app-countdown [eventDate]="currentEventData()!.date"></app-countdown>
+@if (eventData()?.date) {
+  <app-countdown [eventDate]="eventData()!.date"></app-countdown>
 }
-@if (currentEventData()?.guests) {
+@if (eventData()?.guests) {
   <app-guests
-    [guests]="currentEventData()!.guests"
-    [maxPlusOnes]="currentEventData()!.sections.rsvp?.maxPlusOnes || 0"
+    [guests]="eventData()!.guests"
+    [maxPlusOnes]="eventData()!.sections.rsvp?.maxPlusOnes || 0"
   ></app-guests>
 }
 
@@ -21,85 +21,81 @@
   [title]="'Ubicación'"
   [flourishes]="false"
   [icon]="'location_on'"
-  [activities]="getLocationData()"
+  [activities]="locationData()"
 ></app-itinerary>
 <app-gifts
-  [ideas]="currentEventData()?.sections?.gift?.ideas || []"
-  [title]="currentEventData()?.sections?.gift?.title || 'Regalos'"
+  [ideas]="eventData()?.sections?.gift?.ideas || []"
+  [title]="eventData()?.sections?.gift?.title || 'Regalos'"
   [subtitle]="
-    currentEventData()?.sections?.gift?.subtitle ||
+    eventData()?.sections?.gift?.subtitle ||
     'Si deseas hacerme un regalo, aquí tienes algunas ideas:'
   "
-  [wishlistLink]="currentEventData()?.sections?.gift?.giftListUrl || ''"
-  [wishlistTag]="currentEventData()?.sections?.gift?.giftListTag || 'Ver lista de regalos'"
-  [collectiveGift]="currentEventData()?.sections?.gift?.enabledCollectiveGift || false"
-  [paymentQrCodeUrl]="currentEventData()?.sections?.gift?.paymentQrCodeUrl || ''"
-  [paymentQrCodeInstructions]="currentEventData()?.sections?.gift?.paymentQrCodeInstructions || ''"
-  [additionalInfo]="currentEventData()?.sections?.gift?.instructions || ''"
+  [wishlistLink]="eventData()?.sections?.gift?.giftListUrl || ''"
+  [wishlistTag]="eventData()?.sections?.gift?.giftListTag || 'Ver lista de regalos'"
+  [collectiveGift]="eventData()?.sections?.gift?.enabledCollectiveGift || false"
+  [paymentQrCodeUrl]="eventData()?.sections?.gift?.paymentQrCodeUrl || ''"
+  [paymentQrCodeInstructions]="eventData()?.sections?.gift?.paymentQrCodeInstructions || ''"
+  [additionalInfo]="eventData()?.sections?.gift?.instructions || ''"
 ></app-gifts>
 <app-galery
-  [title]="currentEventData()?.sections?.gallery?.title || 'Galería de fotos'"
-  [description]="currentEventData()?.sections?.gallery?.description || 'Momentos especiales'"
-  [images]="
-    currentEventData()?.sections?.gallery?.images || currentEventData()?.design?.galleryImages || []
-  "
+  [title]="eventData()?.sections?.gallery?.title || 'Galería de fotos'"
+  [description]="eventData()?.sections?.gallery?.description || 'Momentos especiales'"
+  [images]="eventData()?.sections?.gallery?.images || eventData()?.design?.galleryImages || []"
 ></app-galery>
-@if (currentEventData()?.sections?.dressCode?.enabled) {
+@if (eventData()?.sections?.dressCode?.enabled) {
   <app-info
-    [title]="currentEventData()?.sections?.dressCode?.title || 'Dress code'"
+    [title]="eventData()?.sections?.dressCode?.title || 'Dress code'"
     icon="checkroom"
-    [description]="currentEventData()?.sections?.dressCode?.description || ''"
+    [description]="eventData()?.sections?.dressCode?.description || ''"
   ></app-info>
 }
-@if (currentEventData()?.sections?.foodDetails?.enabled) {
+@if (eventData()?.sections?.foodDetails?.enabled) {
   <app-info
-    [title]="currentEventData()?.sections?.foodDetails?.title || 'Detalles de la comida'"
+    [title]="eventData()?.sections?.foodDetails?.title || 'Detalles de la comida'"
     icon="restaurant"
-    [description]="currentEventData()?.sections?.foodDetails?.content || ''"
+    [description]="eventData()?.sections?.foodDetails?.content || ''"
   ></app-info>
 }
-@if (currentEventData()?.sections?.locationDetails?.enabled) {
+@if (eventData()?.sections?.locationDetails?.enabled) {
   <app-info
-    [title]="currentEventData()?.sections?.locationDetails?.title || 'Detalles de la ubicación'"
+    [title]="eventData()?.sections?.locationDetails?.title || 'Detalles de la ubicación'"
     icon="directions_bus"
-    [description]="currentEventData()?.sections?.locationDetails?.content || ''"
+    [description]="eventData()?.sections?.locationDetails?.content || ''"
   ></app-info>
 }
-@if (currentEventData()?.sections?.notes?.enabled) {
+@if (eventData()?.sections?.notes?.enabled) {
   <app-notes
-    [title]="currentEventData()?.sections?.notes?.title || ''"
-    [content]="currentEventData()?.sections?.notes?.content || []"
+    [title]="eventData()?.sections?.notes?.title || ''"
+    [content]="eventData()?.sections?.notes?.content || []"
   ></app-notes>
 }
-@if (currentEventData()?.sections?.instagram?.enabled) {
+@if (eventData()?.sections?.instagram?.enabled) {
   <app-info
-    [title]="currentEventData()?.sections?.instagram?.title || 'Comparte tus fotos y videos'"
+    [title]="eventData()?.sections?.instagram?.title || 'Comparte tus fotos y videos'"
     icon="photo_camera"
     [description]="
-      currentEventData()?.sections?.instagram?.description +
+      eventData()?.sections?.instagram?.description +
         ' #' +
-        currentEventData()?.sections?.instagram?.tag || ''
+        eventData()?.sections?.instagram?.tag || ''
     "
-    [link]="
-      'https://www.instagram.com/explore/tags/' + currentEventData()?.sections?.instagram?.tag
-    "
-    [linkTag]="'#' + currentEventData()?.sections?.instagram?.tag"
+    [link]="'https://www.instagram.com/explore/tags/' + eventData()?.sections?.instagram?.tag"
+    [linkTag]="'#' + eventData()?.sections?.instagram?.tag"
     actionTag="Ver en Instagram"
   ></app-info>
 }
-@if (currentEventData()?.sections?.rsvp?.enabled) {
+@if (eventData()?.sections?.rsvp?.enabled) {
   <app-rsvp></app-rsvp>
 }
 
 <section>
-  <h2>{{ currentEventData()?.sections?.sharing?.title || 'Comparte este evento' }}</h2>
+  <h2>{{ eventData()?.sections?.sharing?.title || 'Comparte este evento' }}</h2>
   <button (click)="openShareModal()">
     <span class="material-symbols-rounded">share</span>Compartir
   </button>
 </section>
 
-@if (currentEventData()?.contact?.whatsappNumber) {
-  <app-contact [phoneNumber]="currentEventData()?.contact?.whatsappNumber || 0"></app-contact>
+@if (eventData()?.contact?.whatsappNumber) {
+  <app-contact [phoneNumber]="eventData()?.contact?.whatsappNumber || 0"></app-contact>
 }
 
 <!-- Location Modal -->
@@ -112,7 +108,7 @@
       class="bg-white rounded-lg p-6 m-4 max-w-md w-full shadow-xl"
       (click)="$event.stopPropagation()"
     >
-      <app-location-modal [venue]="currentEventData()?.venue" (close)="closeLocationModal()">
+      <app-location-modal [venue]="eventData()?.venue" (close)="closeLocationModal()">
       </app-location-modal>
     </div>
   </div>
@@ -128,10 +124,7 @@
       class="bg-white rounded-lg p-6 m-4 max-w-md w-full shadow-xl"
       (click)="$event.stopPropagation()"
     >
-      <app-share-modal
-        [shareData]="currentEventData()?.design?.sharing"
-        (close)="closeShareModal()"
-      >
+      <app-share-modal [shareData]="eventData()?.design?.sharing" (close)="closeShareModal()">
       </app-share-modal>
     </div>
   </div>

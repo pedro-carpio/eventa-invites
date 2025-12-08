@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input, OnInit, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, signal, computed } from '@angular/core';
 import { Contact } from '../../module/contact/contact';
 import { Countdown } from '../../module/countdown/countdown';
 import { Galery } from '../../module/galery/galery';
@@ -7,12 +7,32 @@ import { Info } from '../../module/info/info';
 import { Activity, Itinerary } from '../../module/itinerary/itinerary';
 import { Rsvp } from '../../module/rsvp/rsvp';
 import { ShareModal } from '../../modal/share-modal/share-modal';
-import { babyShower } from '../../../../types/event/baby-shower.types';
+import { BabyShower } from '../../../../types/event/baby-shower.types';
 import { LocationModal } from '../../modal/location-modal/location-modal';
 import { Notes } from '../../module/notes/notes';
 import { Gifts } from '../../module/gifts/gifts';
-import { getDemoData } from './demo-objects';
+import { TemplateBase } from '../../template.base';
+import { InviteService } from '../../../../services/invite.service';
+import { ShareService } from '../../../../services/share.service';
+import { GoogleMapsService } from '../../../../services/maps.service';
 
+/**
+ * Componente para plantilla de Bautizo/Baby Shower
+ * Extiende TemplateBase para acceso a servicios comunes de eventos
+ *
+ * Responsabilidades:
+ * - Mostrar datos del evento de bautizo
+ * - Gestionar modales (ubicación, compartir)
+ * - Coordinar datos entre módulos (rsvp, regalos, galería, etc.)
+ *
+ * @example
+ * ```html
+ * <app-vinculo-natural
+ *   [principalPhotoUrl]="photoUrl"
+ *   [eventData]="eventData">
+ * </app-vinculo-natural>
+ * ```
+ */
 @Component({
   selector: 'app-vinculo-natural',
   imports: [
@@ -32,34 +52,37 @@ import { getDemoData } from './demo-objects';
   styleUrls: ['./vinculo-natural.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class VinculoNatural implements OnInit {
+export class VinculoNatural extends TemplateBase<BabyShower> {
+  // ===== INPUTS =====
   principalPhotoUrl = input<string>('https://placehold.co/600x400');
-  eventData = input<babyShower>();
+  eventDataInput = input<BabyShower | undefined>();
 
-  currentEventData = signal<babyShower | undefined>(undefined);
-  currentEventDate = signal<any>({ day: 1, month: 'JAN', year: 1970 });
+  // ===== SIGNALS =====
   isLocationModalOpen = signal<boolean>(false);
   isShareModalOpen = signal<boolean>(false);
 
-  ngOnInit() {
-    if (this.eventData()) {
-      this.currentEventData.set(this.eventData());
-    } else {
-      this.buildDemoData();
+  // ===== COMPUTED SIGNALS =====
+  /**
+   * Calcula la fecha formateada del evento
+   */
+  readonly currentEventDate = computed(() => {
+    const event = this.eventData();
+    if (!event) {
+      return { day: 1, month: 'ENE', year: 1970 };
     }
-    this.currentEventDate.set(this.getDate());
-  }
+    return this.formatDate(event.date);
+  });
 
-  getDate() {
-    const date = this.currentEventData() ? this.currentEventData()!.date : new Date();
-    const day = date.getDate();
-    const month = date.toLocaleString('default', { month: 'long' });
-    const year = date.getFullYear();
-    return { day, month, year };
-  }
+  /**
+   * Calcula los datos de ubicación para el módulo de itinerario
+   */
+  readonly locationData = computed(() => {
+    const event = this.eventData();
+    if (!event) {
+      return [];
+    }
 
-  getLocationData() {
-    const venue = this.currentEventData()!.venue;
+    const venue = event.venue;
     const activities: Activity[] = [
       {
         title: 'Lugar del evento',
@@ -67,32 +90,72 @@ export class VinculoNatural implements OnInit {
       },
       {
         title: 'Dirección',
-        name: venue.address + ', ' + venue.city,
+        name: `${venue.address}, ${venue.city}`,
         action: this.openLocationModal.bind(this),
         button: 'Ver Ubicación',
       },
     ];
     return activities;
+  });
+
+  /**
+   * Constructor con inyección de servicios
+   */
+  constructor(
+    inviteService: InviteService,
+    shareService: ShareService,
+    mapsService: GoogleMapsService,
+  ) {
+    super(inviteService, shareService, mapsService);
   }
 
-  openLocationModal() {
+  /**
+   * Carga los datos del evento (implementación abstracta)
+   * Intenta usar el input, sino carga datos de demo
+   */
+  protected override loadEventData(): void {
+    const inputEvent = this.eventDataInput();
+
+    if (inputEvent && this.isEventValid()) {
+      this.eventData.set(inputEvent);
+    } else {
+      // Carga datos de demostración
+      try {
+        const demoData = this.inviteService.getDemoData();
+        this.eventData.set(demoData);
+      } catch (error) {
+        this.handleError(error as Error);
+      }
+    }
+  }
+
+  // ===== MODAL MANAGEMENT =====
+
+  /**
+   * Abre el modal de ubicación
+   */
+  openLocationModal(): void {
     this.isLocationModalOpen.set(true);
   }
 
-  closeLocationModal() {
+  /**
+   * Cierra el modal de ubicación
+   */
+  closeLocationModal(): void {
     this.isLocationModalOpen.set(false);
   }
 
-  openShareModal() {
+  /**
+   * Abre el modal de compartir
+   */
+  openShareModal(): void {
     this.isShareModalOpen.set(true);
   }
 
-  closeShareModal() {
+  /**
+   * Cierra el modal de compartir
+   */
+  closeShareModal(): void {
     this.isShareModalOpen.set(false);
-  }
-
-  buildDemoData() {
-    const data = getDemoData();
-    this.currentEventData.set(data);
   }
 }
