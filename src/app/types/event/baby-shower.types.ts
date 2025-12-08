@@ -1,51 +1,34 @@
-import { Image } from '../../components/template/module/galery/galery';
+import { Event } from './event.types';
+import { Image } from '../common/common.types';
 
-export type babyShower = {
-  photoUrl: string;
-  title: string;
-  subtitle: string;
-  date: Date;
-  duration_hours?: number;
-  timezone: string;
-  guests: string[];
-  instagram_tag?: string;
-  contact?: {
-    whatsapp_number?: number;
-  };
-  dress_code?: {
+/**
+ * Secciones específicas de Baby Shower
+ */
+export type BabyShowerSections = {
+  dressCode?: {
     enabled: boolean;
     description?: string;
   };
-  food_details?: {
+  foodDetails?: {
     enabled: boolean;
     title?: string;
     content?: string;
   };
-  location_details?: {
+  locationDetails?: {
     enabled: boolean;
     title?: string;
     content?: string;
   };
-  venue: {
-    name: string;
-    address: string;
-    city: string;
-    country: string;
-    state?: string;
-    latitude?: number;
-    longitude?: number;
-    instructions?: string;
-  };
-  notes: {
+  notes?: {
     enabled: boolean;
     title: string;
     content: Array<{ icon: string; text: string }>;
   };
-  rsvp: {
+  rsvp?: {
     enabled: boolean;
     deadline?: Date;
-    contact_whatsapp?: number;
-    max_plus_ones?: number;
+    contactWhatsapp?: number;
+    maxPlusOnes?: number;
     fields: Array<{
       name: string;
       email?: string;
@@ -54,34 +37,50 @@ export type babyShower = {
       notes?: string;
     }>;
   };
-  gift: {
+  gift?: {
     enabled: boolean;
-    enabled_collective_gift?: boolean;
+    enabledCollectiveGift?: boolean;
     ideas?: Array<{
-      img_url: string;
+      imgUrl: string;
       title: string;
       link: string;
     }>;
-    payment_QR_code_url?: string;
-    payment_QR_code_instructions?: string;
-    gift_list_url?: string;
+    paymentQrCodeUrl?: string;
+    paymentQrCodeInstructions?: string;
+    giftListUrl?: string;
     instructions?: string;
   };
-  design: {
-    template_id: string;
-    color_scheme?: string;
-    gallery_images?: Image[];
-    font_pair?: {
-      heading: string;
-      body: string;
-    };
-    sharing: {
-      meta: {
-        title: string;
-        description: string;
-        image_url?: string;
-      };
-      template?: string;
-    };
-  };
 };
+
+/**
+ * BabyShower extiende Event base
+ * Añade propiedades específicas para eventos de Baby Shower
+ */
+export type BabyShower = Event & {
+  // Información específica del bebé
+  babyName: string;
+  guests: string[];
+
+  // Secciones específicas de Baby Shower
+  sections: Event['sections'] & BabyShowerSections;
+};
+
+/**
+ * Alias para compatibilidad hacia atrás (deprecated)
+ * @deprecated Usar BabyShower en su lugar
+ */
+export type babyShower = BabyShower;
+
+/**
+ * Función de utilidad para validar BabyShower
+ */
+export function isValidBabyShower(obj: unknown): obj is BabyShower {
+  if (typeof obj !== 'object' || obj === null) return false;
+
+  const event = obj as Record<string, unknown>;
+  return (
+    typeof event['title'] === 'string' &&
+    typeof event['babyName'] === 'string' &&
+    Array.isArray(event['guests'])
+  );
+}

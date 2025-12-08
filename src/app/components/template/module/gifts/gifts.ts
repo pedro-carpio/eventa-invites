@@ -16,7 +16,7 @@ import { CollectiveQrPayment } from '../../modal/collective-qr-payment/collectiv
             @for (idea of ideas(); track idea.title) {
               <div>
                 <a [href]="idea.link" target="_blank" rel="noopener noreferrer">
-                  <img [src]="idea.img_url" [alt]="idea.title" />
+                  <img [src]="idea.imgUrl" [alt]="idea.title" />
                   <div>
                     <p>{{ idea.title }}</p>
                   </div>
@@ -90,7 +90,7 @@ import { CollectiveQrPayment } from '../../modal/collective-qr-payment/collectiv
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Gifts {
-  ideas = input<Array<{ img_url: string; title: string; link: string }>>([]);
+  ideas = input<Array<{ imgUrl: string; title: string; link: string }>>([]);
   title = input<string>('Regalos');
   subtitle = input<string>('Si deseas hacerme un regalo, aquí tienes algunas ideas:');
   wishlist_link = input<string>('');
