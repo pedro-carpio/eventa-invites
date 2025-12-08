@@ -25,11 +25,14 @@
 ></app-itinerary>
 <app-gifts
   [ideas]="currentEventData()?.sections?.gift?.ideas || []"
-  title="Regalos"
-  subtitle="Si deseas hacerme un regalo, aquí tienes algunas ideas:"
+  [title]="currentEventData()?.sections?.gift?.title || 'Regalos'"
+  [subtitle]="
+    currentEventData()?.sections?.gift?.subtitle ||
+    'Si deseas hacerme un regalo, aquí tienes algunas ideas:'
+  "
   [wishlist_link]="currentEventData()?.sections?.gift?.giftListUrl || ''"
-  wishlist_tag="También tengo una lista de Casa Ideas"
-  [collective_gift]="true"
+  [wishlist_tag]="currentEventData()?.sections?.gift?.giftListTag || 'Ver lista de regalos'"
+  [collective_gift]="currentEventData()?.sections?.gift?.enabledCollectiveGift || false"
   [payment_QR_code_url]="currentEventData()?.sections?.gift?.paymentQrCodeUrl || ''"
   [payment_QR_code_instructions]="
     currentEventData()?.sections?.gift?.paymentQrCodeInstructions || ''
@@ -37,15 +40,17 @@
   [aditional_info]="currentEventData()?.sections?.gift?.instructions || ''"
 ></app-gifts>
 <app-galery
-  title="Galería de fotos"
-  description="Momentos especiales"
-  [images]="currentEventData()?.design?.galleryImages || []"
+  [title]="currentEventData()?.sections?.gallery?.title || 'Galería de fotos'"
+  [description]="currentEventData()?.sections?.gallery?.description || 'Momentos especiales'"
+  [images]="
+    currentEventData()?.sections?.gallery?.images || currentEventData()?.design?.galleryImages || []
+  "
 ></app-galery>
 @if (currentEventData()?.sections?.dressCode?.enabled) {
   <app-info
-    title="Dress code"
+    [title]="currentEventData()?.sections?.dressCode?.title || 'Dress code'"
     icon="checkroom"
-    description="{{ currentEventData()?.sections?.dressCode?.description }}"
+    [description]="currentEventData()?.sections?.dressCode?.description || ''"
   ></app-info>
 }
 @if (currentEventData()?.sections?.foodDetails?.enabled) {
@@ -68,13 +73,19 @@
     [content]="currentEventData()?.sections?.notes?.content || []"
   ></app-notes>
 }
-@if (currentEventData()?.instagramTag) {
+@if (currentEventData()?.sections?.instagram?.enabled) {
   <app-info
-    title="Comparte tus fotos y videos"
+    [title]="currentEventData()?.sections?.instagram?.title || 'Comparte tus fotos y videos'"
     icon="photo_camera"
-    description="Comparte tus fotos usando #{{ currentEventData()?.instagramTag }}"
-    link="https://www.instagram.com/explore/tags/{{ currentEventData()?.instagramTag }}"
-    linkTag="#{{ currentEventData()?.instagramTag }}"
+    [description]="
+      currentEventData()?.sections?.instagram?.description +
+        ' #' +
+        currentEventData()?.sections?.instagram?.tag || ''
+    "
+    [link]="
+      'https://www.instagram.com/explore/tags/' + currentEventData()?.sections?.instagram?.tag
+    "
+    [linkTag]="'#' + currentEventData()?.sections?.instagram?.tag"
     actionTag="Ver en Instagram"
   ></app-info>
 }
@@ -83,7 +94,7 @@
 }
 
 <section>
-  <h2>Comparte este evento</h2>
+  <h2>{{ currentEventData()?.sections?.sharing?.title || 'Comparte este evento' }}</h2>
   <button (click)="openShareModal()">
     <span class="material-symbols-rounded">share</span>Compartir
   </button>

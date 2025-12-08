@@ -72,6 +72,7 @@ export const BABY_SHOWER_DEMO: BabyShower = {
 
     rsvp: {
       enabled: true,
+      title: 'Confirma tu asistencia',
       deadline: getEventDate(35),
       contactWhatsapp: 5917123456789,
       maxPlusOnes: 1,
@@ -100,6 +101,8 @@ export const BABY_SHOWER_DEMO: BabyShower = {
 
     gift: {
       enabled: true,
+      title: 'Regalos',
+      subtitle: 'Si deseas hacerme un regalo, aquí tienes algunas ideas:',
       enabledCollectiveGift: true,
       ideas: [
         {
@@ -122,12 +125,47 @@ export const BABY_SHOWER_DEMO: BabyShower = {
       paymentQrCodeInstructions: 'Escanea el código QR para contribuir con un regalo o aportación.',
       giftListUrl:
         'https://www.casaideas.com.bo/customer/event/event-details/baby-shower-de-sofia-263',
+      giftListTag: 'También tengo una lista de Casa Ideas',
       instructions: 'Puedes traer un regalo hecho a mano, ¡lo amaremos aún más!',
     },
 
     dressCode: {
       enabled: true,
+      title: 'Dress code',
       description: 'Puedes venir como quieras ❤️',
+    },
+
+    gallery: {
+      enabled: true,
+      title: 'Galería de fotos',
+      description: 'Momentos especiales',
+      images: [
+        {
+          src: 'https://placehold.co/600x400',
+          alt: 'Momento especial 1',
+        },
+        {
+          src: 'https://placehold.co/600x400',
+          alt: 'Momento especial 2',
+        },
+        {
+          src: 'https://placehold.co/600x400',
+          alt: 'Momento especial 3',
+        },
+      ],
+    },
+
+    instagram: {
+      enabled: true,
+      title: 'Comparte tus fotos y videos',
+      description: 'Comparte tus fotos usando',
+      tag: 'BabyShower2025',
+    },
+
+    sharing: {
+      enabled: true,
+      title: 'Comparte este evento',
+      description: 'Invita a más gente a celebrar con nosotros',
     },
   },
 

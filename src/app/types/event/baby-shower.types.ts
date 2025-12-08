@@ -7,6 +7,7 @@ import { Image } from '../common/common.types';
 export type BabyShowerSections = {
   dressCode?: {
     enabled: boolean;
+    title?: string;
     description?: string;
   };
   foodDetails?: {
@@ -26,6 +27,7 @@ export type BabyShowerSections = {
   };
   rsvp?: {
     enabled: boolean;
+    title?: string;
     deadline?: Date;
     contactWhatsapp?: number;
     maxPlusOnes?: number;
@@ -39,6 +41,8 @@ export type BabyShowerSections = {
   };
   gift?: {
     enabled: boolean;
+    title?: string;
+    subtitle?: string;
     enabledCollectiveGift?: boolean;
     ideas?: Array<{
       imgUrl: string;
@@ -48,7 +52,25 @@ export type BabyShowerSections = {
     paymentQrCodeUrl?: string;
     paymentQrCodeInstructions?: string;
     giftListUrl?: string;
+    giftListTag?: string;
     instructions?: string;
+  };
+  gallery?: {
+    enabled: boolean;
+    title?: string;
+    description?: string;
+    images?: Image[];
+  };
+  instagram?: {
+    enabled: boolean;
+    title?: string;
+    description?: string;
+    tag: string;
+  };
+  sharing?: {
+    enabled: boolean;
+    title?: string;
+    description?: string;
   };
 };
 
