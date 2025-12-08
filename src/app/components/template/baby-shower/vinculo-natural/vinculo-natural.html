@@ -1,1 +1,85 @@
-<p>Vinculo natural template</p>
+<img [src]="currentEventData()?.photoUrl" [alt]="currentEventData()?.title" />
+<hr />
+<span
+  >{{ currentEventDate().day }} de {{ currentEventDate().month }},
+  {{ currentEventDate().year }}</span
+>
+<h2>{{ currentEventData()?.title }}</h2>
+<h3>{{ currentEventData()?.subtitle }}</h3>
+<hr />
+@if (currentEventData()?.date) {
+  <app-countdown [eventDate]="currentEventData()!.date"></app-countdown>
+}
+@if (currentEventData()?.guests) {
+  <app-guests
+    [guests]="currentEventData()!.guests"
+    [max_plus_ones]="currentEventData()!.rsvp.max_plus_ones"
+  ></app-guests>
+}
+
+<app-itinerary
+  [title]="'Ubicación'"
+  [flourishes]="false"
+  [icon]="'location_on'"
+  [activities]="getLocationData()"
+></app-itinerary>
+<app-gifts
+  [ideas]="currentEventData()?.gift?.ideas || []"
+  title="Regalos"
+  subtitle="Si deseas hacerme un regalo, aquí tienes algunas ideas:"
+  [wishlist_link]="currentEventData()?.gift?.gift_list_url || ''"
+  wishlist_tag="También tengo una lista de Casa Ideas"
+  [collective_gift]="true"
+  [payment_QR_code_url]="currentEventData()?.gift?.payment_QR_code_url || ''"
+  [payment_QR_code_instructions]="currentEventData()?.gift?.payment_QR_code_instructions || ''"
+  [aditional_info]="currentEventData()?.gift?.instructions || ''"
+></app-gifts>
+<app-galery
+  title="Galería de fotos"
+  description="Momentos especiales"
+  [images]="currentEventData()?.design?.gallery_images || []"
+></app-galery>
+@if (currentEventData()?.dress_code?.enabled) {
+  <app-info
+    title="Dress code"
+    icon="checkroom"
+    description="{{ currentEventData()?.dress_code?.description }}"
+  ></app-info>
+}
+@if (currentEventData()?.food_details?.enabled) {
+  <app-info
+    [title]="currentEventData()?.food_details?.title || 'Detalles de la comida'"
+    icon="restaurant"
+    [description]="currentEventData()?.food_details?.content || ''"
+  ></app-info>
+}
+@if (currentEventData()?.location_details?.enabled) {
+  <app-info
+    [title]="currentEventData()?.location_details?.title || 'Detalles de la ubicación'"
+    icon="directions_bus"
+    [description]="currentEventData()?.location_details?.content || ''"
+  ></app-info>
+}
+@if (currentEventData()?.notes?.enabled) {
+  <app-notes
+    [title]="currentEventData()?.notes?.title || ''"
+    [content]="currentEventData()?.notes?.content || []"
+  ></app-notes>
+}
+@if (currentEventData()?.instagram_tag) {
+  <app-info
+    title="Comparte tus fotos y videos"
+    icon="photo_camera"
+    description="Comparte tus fotos usando #{{ currentEventData()?.instagram_tag }}"
+    link="https://www.instagram.com/explore/tags/{{ currentEventData()?.instagram_tag }}"
+    linkTag="#{{ currentEventData()?.instagram_tag }}"
+    actionTag="Ver en Instagram"
+  ></app-info>
+}
+@if (currentEventData()?.rsvp?.enabled) {
+  <app-rsvp></app-rsvp>
+}
+
+@if (currentEventData()?.contact?.whatsapp_number) {
+  <app-contact [phoneNumber]="currentEventData()?.contact?.whatsapp_number || 0"></app-contact>
+}

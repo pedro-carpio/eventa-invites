@@ -6,9 +6,9 @@ import { Component, Input } from '@angular/core';
   template: `
     <h2>Faltan</h2>
     @if (!hasPassed) {
-      <span>{{ timeLeft.days }} días</span>
-      <span>{{ timeLeft.hours }} horas</span>
-      <span>{{ timeLeft.minutes }} minutos</span>
+      <span>{{ timeLeft.days }} días, </span>
+      <span>{{ timeLeft.hours }} horas, </span>
+      <span>{{ timeLeft.minutes }} minutos, </span>
       <span>{{ timeLeft.seconds }} segundos</span>
     } @else {
       <span>El evento ya ha pasado.</span>
@@ -17,16 +17,16 @@ import { Component, Input } from '@angular/core';
   styles: ``,
 })
 export class Countdown {
-  @Input() eventDateTime!: Date;
+  @Input() eventDate!: Date;
 
   get hasPassed(): boolean {
     const now = new Date();
-    return now.getTime() > this.eventDateTime.getTime();
+    return now.getTime() > this.eventDate.getTime();
   }
 
   get timeLeft(): TimeLeft {
     const now = new Date();
-    const difference = this.eventDateTime.getTime() - now.getTime();
+    const difference = this.eventDate.getTime() - now.getTime();
 
     const days = Math.floor(difference / (1000 * 60 * 60 * 24));
     const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));

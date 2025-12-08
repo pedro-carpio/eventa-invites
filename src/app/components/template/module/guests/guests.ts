@@ -4,7 +4,17 @@ import { Component, Input } from '@angular/core';
   selector: 'app-guests',
   imports: [],
   template: `
-    <h2>Invitados</h2>
+    <h2>Invitadxs</h2>
+    @if (max_plus_ones && max_plus_ones > 0) {
+      <p>
+        Cada invitadx puede llevar hasta {{ max_plus_ones }}
+        @if (max_plus_ones > 1) {
+          acompañantes
+        } @else {
+          acompañante
+        }
+      </p>
+    }
     <ul>
       @for (guest of guests; track guest) {
         <li>{{ guest }}</li>
@@ -15,4 +25,5 @@ import { Component, Input } from '@angular/core';
 })
 export class Guests {
   @Input() guests!: string[];
+  @Input() max_plus_ones?: number;
 }

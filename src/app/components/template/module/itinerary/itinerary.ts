@@ -9,10 +9,18 @@ import { Component, Input } from '@angular/core';
     <ul>
       @for (activity of activities; track activity.name) {
         <li>
-          <span class="material-symbols-rounded">{{ activity.icon }}</span
-          >{{ activity.name }}
+          @if (activity.icon) {
+            <span class="material-symbols-rounded">{{ activity.icon }}</span>
+          }
+          @if (activity.title) {
+            <strong>{{ activity.title }}</strong>
+          }
+          {{ activity.name }}
           @if (activity.time) {
             - {{ activity.time }}
+          }
+          @if (activity.action && activity.button) {
+            <button (click)="activity.action()">{{ activity.button }}</button>
           }
         </li>
       }
@@ -22,13 +30,16 @@ import { Component, Input } from '@angular/core';
 })
 export class Itinerary {
   @Input() flourishes: boolean = true;
-  @Input() icon: string = 'assignment_turned_in';
+  @Input() icon?: string = 'assignment_turned_in';
   @Input() title: string = 'Itinerario';
   @Input() activities: Activity[] = [];
 }
 
 export type Activity = {
-  icon: string;
+  icon?: string;
+  title?: string;
   name: string;
   time?: string;
+  action?: () => void;
+  button?: string;
 };

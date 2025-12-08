@@ -6,7 +6,7 @@ import { Component, Input } from '@angular/core';
   template: `
     <h2>{{ title }}</h2>
     <p>{{ description }}</p>
-    <p></p>
+    <span class="material-symbols-rounded">photo_camera</span>
     <div class="images">
       @for (image of images; track image.src) {
         <img [src]="image.src" [alt]="image.alt" />
