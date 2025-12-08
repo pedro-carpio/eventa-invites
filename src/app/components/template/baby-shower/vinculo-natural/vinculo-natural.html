@@ -13,7 +13,7 @@
 @if (currentEventData()?.guests) {
   <app-guests
     [guests]="currentEventData()!.guests"
-    [max_plus_ones]="currentEventData()!.sections.rsvp?.maxPlusOnes || 0"
+    [maxPlusOnes]="currentEventData()!.sections.rsvp?.maxPlusOnes || 0"
   ></app-guests>
 }
 
@@ -30,14 +30,12 @@
     currentEventData()?.sections?.gift?.subtitle ||
     'Si deseas hacerme un regalo, aquí tienes algunas ideas:'
   "
-  [wishlist_link]="currentEventData()?.sections?.gift?.giftListUrl || ''"
-  [wishlist_tag]="currentEventData()?.sections?.gift?.giftListTag || 'Ver lista de regalos'"
-  [collective_gift]="currentEventData()?.sections?.gift?.enabledCollectiveGift || false"
-  [payment_QR_code_url]="currentEventData()?.sections?.gift?.paymentQrCodeUrl || ''"
-  [payment_QR_code_instructions]="
-    currentEventData()?.sections?.gift?.paymentQrCodeInstructions || ''
-  "
-  [aditional_info]="currentEventData()?.sections?.gift?.instructions || ''"
+  [wishlistLink]="currentEventData()?.sections?.gift?.giftListUrl || ''"
+  [wishlistTag]="currentEventData()?.sections?.gift?.giftListTag || 'Ver lista de regalos'"
+  [collectiveGift]="currentEventData()?.sections?.gift?.enabledCollectiveGift || false"
+  [paymentQrCodeUrl]="currentEventData()?.sections?.gift?.paymentQrCodeUrl || ''"
+  [paymentQrCodeInstructions]="currentEventData()?.sections?.gift?.paymentQrCodeInstructions || ''"
+  [additionalInfo]="currentEventData()?.sections?.gift?.instructions || ''"
 ></app-gifts>
 <app-galery
   [title]="currentEventData()?.sections?.gallery?.title || 'Galería de fotos'"

@@ -25,16 +25,16 @@ import { CollectiveQrPayment } from '../../modal/collective-qr-payment/collectiv
             }
           </div>
 
-          @if (wishlist_link() && wishlist_tag()) {
+          @if (wishlistLink() && wishlistTag()) {
             <div>
-              <a [href]="wishlist_link()" target="_blank" rel="noopener noreferrer">
+              <a [href]="wishlistLink()" target="_blank" rel="noopener noreferrer">
                 <span class="material-symbols-rounded">list_alt</span>
-                {{ wishlist_tag() }}
+                {{ wishlistTag() }}
               </a>
             </div>
           }
 
-          @if (collective_gift()) {
+          @if (collectiveGift()) {
             <div class="">
               <span class="material-symbols-rounded">redeem</span>
               <div>
@@ -48,9 +48,9 @@ import { CollectiveQrPayment } from '../../modal/collective-qr-payment/collectiv
             </div>
           }
 
-          @if (aditional_info()) {
+          @if (additionalInfo()) {
             <div>
-              <p>{{ aditional_info() }}</p>
+              <p>{{ additionalInfo() }}</p>
             </div>
           }
         </div>
@@ -77,8 +77,8 @@ import { CollectiveQrPayment } from '../../modal/collective-qr-payment/collectiv
           <app-collective-qr-payment
             title="Regalo Colectivo"
             description="Gracias por tu contribución! Cada aporte cuenta."
-            [qrCodeUrl]="payment_QR_code_url()"
-            [paymentInstructions]="payment_QR_code_instructions()"
+            [qrCodeUrl]="paymentQrCodeUrl()"
+            [paymentInstructions]="paymentQrCodeInstructions()"
             [contactWhatsapp]="contactWhatsapp()"
             (close)="closeCollectiveModal()"
           ></app-collective-qr-payment>
@@ -93,13 +93,13 @@ export class Gifts {
   ideas = input<Array<{ imgUrl: string; title: string; link: string }>>([]);
   title = input<string>('Regalos');
   subtitle = input<string>('Si deseas hacerme un regalo, aquí tienes algunas ideas:');
-  wishlist_link = input<string>('');
-  wishlist_tag = input<string>('Ver lista de regalos');
-  collective_gift = input<boolean>(false);
-  payment_QR_code_url = input<string>('');
-  payment_QR_code_instructions = input<string>('');
+  wishlistLink = input<string>('');
+  wishlistTag = input<string>('Ver lista de regalos');
+  collectiveGift = input<boolean>(false);
+  paymentQrCodeUrl = input<string>('');
+  paymentQrCodeInstructions = input<string>('');
   contactWhatsapp = input<number>();
-  aditional_info = input<string>('');
+  additionalInfo = input<string>('');
 
   isCollectiveModalOpen = signal<boolean>(false);
 

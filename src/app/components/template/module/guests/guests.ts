@@ -1,14 +1,14 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
 @Component({
   selector: 'app-guests',
   imports: [],
   template: `
     <h2>Invitadxs</h2>
-    @if (max_plus_ones && max_plus_ones > 0) {
+    @if (maxPlusOnes(); as maxPlusOnes) {
       <p>
-        Cada invitadx puede llevar hasta {{ max_plus_ones }}
-        @if (max_plus_ones > 1) {
+        Cada invitadx puede llevar hasta {{ maxPlusOnes }}
+        @if (maxPlusOnes > 1) {
           acompañantes
         } @else {
           acompañante
@@ -16,14 +16,15 @@ import { Component, Input } from '@angular/core';
       </p>
     }
     <ul>
-      @for (guest of guests; track guest) {
+      @for (guest of guests(); track guest) {
         <li>{{ guest }}</li>
       }
     </ul>
   `,
   styles: ``,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Guests {
-  @Input() guests!: string[];
-  @Input() max_plus_ones?: number;
+  guests = input<string[]>([]);
+  maxPlusOnes = input<number | undefined>();
 }
