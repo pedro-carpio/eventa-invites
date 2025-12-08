@@ -2,6 +2,22 @@ import { Routes } from '@angular/router';
 
 export const routes: Routes = [
   {
+    path: '',
+    loadComponent: () => import('./components/home/home').then((m) => m.Home),
+  },
+  {
+    path: 'baby-shower',
+    children: [
+      {
+        path: 'vinculo-natural',
+        loadComponent: () =>
+          import('./components/template/baby-shower/vinculo-natural/vinculo-natural').then(
+            (m) => m.VinculoNatural,
+          ),
+      },
+    ],
+  },
+  {
     path: 'generador',
     loadComponent: () => import('./components/wizard/wizard').then((m) => m.Wizard),
   },
