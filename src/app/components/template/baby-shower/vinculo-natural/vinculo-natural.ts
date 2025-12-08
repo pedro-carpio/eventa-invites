@@ -7,7 +7,7 @@ import { Info } from '../../module/info/info';
 import { Activity, Itinerary } from '../../module/itinerary/itinerary';
 import { Rsvp } from '../../module/rsvp/rsvp';
 import { ShareModal } from '../../modal/share-modal/share-modal';
-import { babyShower } from '../types/baby-shower.types';
+import { babyShower } from '../../../../types/event/baby-shower.types';
 import { LocationModal } from '../../modal/location-modal/location-modal';
 import { Notes } from '../../module/notes/notes';
 import { Gifts } from '../../module/gifts/gifts';

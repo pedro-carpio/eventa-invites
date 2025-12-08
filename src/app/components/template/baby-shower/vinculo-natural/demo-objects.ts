@@ -1,4 +1,4 @@
-import { babyShower } from '../types/baby-shower.types';
+import { babyShower } from '../../../../types/event/baby-shower.types';
 export function getDemoData() {
   const today = new Date();
   const babyShowerDemoData: babyShower = {
@@ -102,12 +102,12 @@ export function getDemoData() {
       ],
       sharing: {
         meta: {
-          title: 'Únete a nuestro Baby Shower!',
+          title: 'Únete a este Baby Shower!',
           description: 'Estamos emocionados de celebrar la llegada de alguien contigo. ¡No faltes!',
           image_url: 'https://placehold.co/600x400',
         },
         template:
-          '¡Hola! Te invitamos a nuestro Baby Shower. Será una celebración especial para dar la bienvenida a alguien muy especial. ¡Esperamos verte allí!',
+          '¡Hola! Te invitamos a este Baby Shower. Será una celebración especial para dar la bienvenida a alguien muy especial. ¡Esperamos verte allí!',
       },
     },
   };

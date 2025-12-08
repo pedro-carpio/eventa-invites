@@ -1,4 +1,4 @@
-import { Image } from '../../module/galery/galery';
+import { Image } from '../../components/template/module/galery/galery';
 
 export type babyShower = {
   photoUrl: string;
