@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, effect, input, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, OnDestroy, OnInit } from '@angular/core';
 
 export interface Include {
   icon: string | string[];
@@ -12,9 +12,12 @@ export interface Include {
   template: `
     <h2>¿Qué incluyen?</h2>
     <ul>
-      @for (item of items(); track item.title; let i = $index) {
+      @for (item of items(); track $index) {
         <li>
-          <span class="material-symbols-rounded icon-rotate">{{ getCurrentIcon(i) }}</span>
+          <span
+            class="material-symbols-rounded icon-rotate"
+            [style.--icon-content]="getIconContent(item)"
+          ></span>
           <h3>{{ item.title }}</h3>
           <p>{{ item.content }}</p>
         </li>
@@ -24,52 +27,71 @@ export interface Include {
   styles: `
     .icon-rotate {
       display: inline-block;
-      transition:
-        transform 0.3s ease-in-out,
-        opacity 0.3s ease-in-out;
+      transition: opacity 0.3s ease-in-out;
+    }
+
+    .icon-rotate::before {
+      content: var(--icon-content);
+    }
+
+    .icon-rotate[data-rotating='true'] {
+      animation: iconRotation 1s infinite linear;
+    }
+
+    @keyframes iconRotation {
+      0% {
+        opacity: 1;
+      }
+      25% {
+        opacity: 0.7;
+      }
+      50% {
+        opacity: 1;
+      }
+      75% {
+        opacity: 0.7;
+      }
+      100% {
+        opacity: 1;
+      }
     }
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class Includes {
+export class Includes implements OnInit, OnDestroy {
   items = input<Include[]>([]);
-  private iconIndices = signal<number[]>([]);
+  private intervalId: ReturnType<typeof setInterval> | null = null;
+  private currentIconIndex = 0;
 
-  currentIcons = computed(() => {
-    const indices = this.iconIndices();
-    return this.items().map((item, i) => {
-      if (Array.isArray(item.icon)) {
-        const iconIndex = indices[i] ?? 0;
-        return item.icon[iconIndex] ?? item.icon[0];
-      }
-      return item.icon;
-    });
-  });
-
-  getCurrentIcon(index: number): string {
-    return this.currentIcons()[index] ?? '';
+  getIconContent(item: Include): string {
+    if (Array.isArray(item.icon)) {
+      return `"${item.icon[this.currentIconIndex % item.icon.length]}"`;
+    }
+    return `"${item.icon}"`;
   }
 
-  constructor() {
-    effect(() => {
-      const itemsList = this.items();
-      if (itemsList.length === 0) return;
+  ngOnInit() {
+    this.startIconRotation();
+  }
 
-      this.iconIndices.set(new Array(itemsList.length).fill(0));
+  ngOnDestroy() {
+    if (this.intervalId) {
+      clearInterval(this.intervalId);
+    }
+  }
 
-      const interval = setInterval(() => {
-        this.iconIndices.update((indices) =>
-          indices.map((currentIndex, i) => {
-            const item = itemsList[i];
-            if (Array.isArray(item.icon)) {
-              return (currentIndex + 1) % item.icon.length;
-            }
-            return currentIndex;
-          }),
-        );
-      }, 1000);
-
-      return () => clearInterval(interval);
-    });
+  private startIconRotation() {
+    this.intervalId = setInterval(() => {
+      this.currentIconIndex++;
+      // Actualizar solo los iconos que rotan usando CSS custom properties
+      const rotatingIcons = document.querySelectorAll('.icon-rotate');
+      rotatingIcons.forEach((icon, index) => {
+        const item = this.items()[index];
+        if (Array.isArray(item?.icon)) {
+          const newIcon = item.icon[this.currentIconIndex % item.icon.length];
+          (icon as HTMLElement).style.setProperty('--icon-content', `"${newIcon}"`);
+        }
+      });
+    }, 1000);
   }
 }
