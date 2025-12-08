@@ -38,6 +38,8 @@ export class VinculoNatural implements OnInit {
 
   currentEventData = signal<babyShower | undefined>(undefined);
   currentEventDate = signal<any>({ day: 1, month: 'JAN', year: 1970 });
+  isLocationModalOpen = signal<boolean>(false);
+  isShareModalOpen = signal<boolean>(false);
 
   ngOnInit() {
     if (this.eventData()) {
@@ -74,11 +76,19 @@ export class VinculoNatural implements OnInit {
   }
 
   openLocationModal() {
-    // TODO: Lógica para abrir el modal de ubicación
+    this.isLocationModalOpen.set(true);
+  }
+
+  closeLocationModal() {
+    this.isLocationModalOpen.set(false);
   }
 
   openShareModal() {
-    // TODO: Lógica para abrir el modal de compartir
+    this.isShareModalOpen.set(true);
+  }
+
+  closeShareModal() {
+    this.isShareModalOpen.set(false);
   }
 
   buildDemoData() {
