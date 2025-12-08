@@ -86,13 +86,6 @@ export type BabyShower = Event & {
   // Secciones específicas de Baby Shower
   sections: Event['sections'] & BabyShowerSections;
 };
-
-/**
- * Alias para compatibilidad hacia atrás (deprecated)
- * @deprecated Usar BabyShower en su lugar
- */
-export type babyShower = BabyShower;
-
 /**
  * Función de utilidad para validar BabyShower
  */

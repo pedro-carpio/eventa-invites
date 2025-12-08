@@ -104,12 +104,3 @@ export class MapsServiceFactory {
     return new GoogleMapsService();
   }
 }
-
-/**
- * Alias para compatibilidad hacia atrás
- * @deprecated Usar GoogleMapsService o OpenStreetMapsService directamente
- */
-@Injectable({
-  providedIn: 'root',
-})
-export class MapsService extends GoogleMapsService {}
