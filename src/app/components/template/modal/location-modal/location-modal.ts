@@ -48,13 +48,8 @@ import { LocationService } from '../../../../services/location.service';
       <p>{{ venue().country }}</p>
 
       @if (venue().instructions) {
-        <h3>Cómo llegar</h3>
+        <h3>Detalles</h3>
         <p>{{ venue().instructions }}</p>
-      }
-
-      @if (coordinates(); as coords) {
-        <h3>Coordenadas</h3>
-        <p>{{ coords.latitude.toFixed(4) }}, {{ coords.longitude.toFixed(4) }}</p>
       }
 
       <a [href]="mapUrl()" target="_blank" rel="noopener noreferrer"> Ver en Google Maps </a>

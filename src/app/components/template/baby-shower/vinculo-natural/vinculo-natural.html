@@ -1,4 +1,4 @@
-<img [src]="eventData()?.photoUrl" [alt]="eventData()?.title" />
+<img [src]="eventData()?.photoUrl || principalPhotoUrl()" [alt]="eventData()?.title" />
 <hr />
 <span
   >{{ currentEventDate().day }} de {{ currentEventDate().month }},
@@ -36,6 +36,15 @@
   [paymentQrCodeUrl]="eventData()?.sections?.gift?.paymentQrCodeUrl || ''"
   [paymentQrCodeInstructions]="eventData()?.sections?.gift?.paymentQrCodeInstructions || ''"
   [additionalInfo]="eventData()?.sections?.gift?.instructions || ''"
+  [contactWhatsapp]="eventData()?.contact?.whatsappNumber || 0"
+  [collectiveGiftTitle]="eventData()?.sections?.gift?.collectiveGiftTitle || 'Regalo Colectivo'"
+  [collectiveGiftDescription]="
+    eventData()?.sections?.gift?.collectiveGiftDescription ||
+    'Puedes contribuir a un regalo colectivo con algo de dinero.'
+  "
+  [collectiveGiftButtonTag]="
+    eventData()?.sections?.gift?.collectiveGiftButtonTag || 'Unirme al regalo colectivo'
+  "
 ></app-gifts>
 <app-galery
   [title]="eventData()?.sections?.gallery?.title || 'Galería de fotos'"

@@ -58,8 +58,6 @@ export interface ShareData {
       <p>
         {{ shareData()?.meta?.description || 'Comparte este evento con tus amigos y familiares' }}
       </p>
-
-      <h3>Opciones de compartición</h3>
       <button (click)="shareOnFacebook()" type="button">Facebook</button>
       <button (click)="shareOnWhatsApp()" type="button">WhatsApp</button>
       <button (click)="copyLink()" type="button">Copiar enlace</button>

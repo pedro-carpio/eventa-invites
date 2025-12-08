@@ -4,10 +4,10 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
   selector: 'app-guests',
   imports: [],
   template: `
-    <h2>Invitadxs</h2>
+    <h2>Asistencia</h2>
     @if (maxPlusOnes(); as maxPlusOnes) {
       <p>
-        Cada invitadx puede llevar hasta {{ maxPlusOnes }}
+        Cada invitación incluye {{ maxPlusOnes }}
         @if (maxPlusOnes > 1) {
           acompañantes
         } @else {

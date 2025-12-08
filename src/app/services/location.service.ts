@@ -79,14 +79,6 @@ export class LocationService {
       });
     }
 
-    // Agregar país si disponible
-    if (venue.country) {
-      activities.push({
-        title: 'País',
-        name: venue.country,
-      });
-    }
-
     return activities;
   }
 

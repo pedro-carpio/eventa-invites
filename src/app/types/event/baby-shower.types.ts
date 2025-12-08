@@ -54,6 +54,9 @@ export type BabyShowerSections = {
     giftListUrl?: string;
     giftListTag?: string;
     instructions?: string;
+    collectiveGiftTitle?: string;
+    collectiveGiftDescription?: string;
+    collectiveGiftButtonTag?: string;
   };
   gallery?: {
     enabled: boolean;

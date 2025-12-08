@@ -4,7 +4,7 @@ import { Countdown } from '../../module/countdown/countdown';
 import { Galery } from '../../module/galery/galery';
 import { Guests } from '../../module/guests/guests';
 import { Info } from '../../module/info/info';
-import { Activity, Itinerary } from '../../module/itinerary/itinerary';
+import { Itinerary } from '../../module/itinerary/itinerary';
 import { Rsvp } from '../../module/rsvp/rsvp';
 import { ShareModal } from '../../modal/share-modal/share-modal';
 import { BabyShower } from '../../../../types/event/baby-shower.types';

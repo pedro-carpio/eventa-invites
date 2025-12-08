@@ -67,7 +67,7 @@ export const BABY_SHOWER_DEMO: BabyShower = {
     locationDetails: {
       enabled: true,
       title: 'Detalles de la ubicación',
-      content: 'El trufi XYZ tiene una parada cerca del lugar del evento.',
+      content: 'El trufi XYZ pasa muy cerca del lugar del evento.',
     },
 
     rsvp: {
@@ -107,7 +107,7 @@ export const BABY_SHOWER_DEMO: BabyShower = {
       ideas: [
         {
           imgUrl: 'https://placehold.co/150',
-          title: 'Pañales tamaño M',
+          title: 'Pañales',
           link: 'https://www.example.com/diapers',
         },
         {
@@ -127,6 +127,9 @@ export const BABY_SHOWER_DEMO: BabyShower = {
         'https://www.casaideas.com.bo/customer/event/event-details/baby-shower-de-sofia-263',
       giftListTag: 'También tengo una lista de Casa Ideas',
       instructions: 'Puedes traer un regalo hecho a mano, ¡lo amaremos aún más!',
+      collectiveGiftTitle: 'Regalo Colectivo',
+      collectiveGiftDescription: 'Estamos haciendo vaquita para comprar todo de las listas',
+      collectiveGiftButtonTag: 'Unirme al regalo colectivo',
     },
 
     dressCode: {
@@ -189,7 +192,7 @@ export const BABY_SHOWER_DEMO: BabyShower = {
     sharing: {
       meta: {
         title: '¡Únete a este Baby Shower!',
-        description: 'Estamos emocionados de celebrar la llegada de Sofía contigo. ¡No faltes!',
+        description: 'Nos emociona celebrar la llegada de Sofía contigo. ¡No faltes!',
         imageUrl: 'https://placehold.co/600x400',
       },
       template:

@@ -38,12 +38,12 @@ import { CollectiveQrPayment } from '../../modal/collective-qr-payment/collectiv
             <div class="">
               <span class="material-symbols-rounded">redeem</span>
               <div>
-                <h4>Regalo Colectivo</h4>
-                <p>Puedes contribuir a un regalo colectivo con algo de dinero.</p>
+                <h4>{{ collectiveGiftTitle() }}</h4>
+                <p>{{ collectiveGiftDescription() }}</p>
               </div>
               <button (click)="openCollectiveGiftModal()">
                 <span class="material-symbols-rounded">payments</span>
-                Unirme al regalo colectivo
+                {{ collectiveGiftButtonTag() }}
               </button>
             </div>
           }
@@ -75,8 +75,8 @@ import { CollectiveQrPayment } from '../../modal/collective-qr-payment/collectiv
           (click)="$event.stopPropagation()"
         >
           <app-collective-qr-payment
-            title="Regalo Colectivo"
-            description="Gracias por tu contribución! Cada aporte cuenta."
+            [title]="collectiveGiftTitle()"
+            [description]="collectiveGiftDescription()"
             [qrCodeUrl]="paymentQrCodeUrl()"
             [paymentInstructions]="paymentQrCodeInstructions()"
             [contactWhatsapp]="contactWhatsapp()"
@@ -100,6 +100,11 @@ export class Gifts {
   paymentQrCodeInstructions = input<string>('');
   contactWhatsapp = input<number>();
   additionalInfo = input<string>('');
+  collectiveGiftTitle = input<string>('Regalo Colectivo');
+  collectiveGiftDescription = input<string>(
+    'Puedes contribuir a un regalo colectivo con algo de dinero.',
+  );
+  collectiveGiftButtonTag = input<string>('Unirme al regalo colectivo');
 
   isCollectiveModalOpen = signal<boolean>(false);
 

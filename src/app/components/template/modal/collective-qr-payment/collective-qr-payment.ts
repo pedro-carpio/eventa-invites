@@ -6,8 +6,6 @@ import { ChangeDetectionStrategy, Component, input, output } from '@angular/core
   template: `
     <div>
       <h2>{{ title() }}</h2>
-      <button (click)="onClose()" type="button">Cerrar</button>
-
       <p>{{ description() }}</p>
 
       @if (qrCodeUrl()) {
@@ -23,15 +21,12 @@ import { ChangeDetectionStrategy, Component, input, output } from '@angular/core
         </div>
       } @else if (contactWhatsapp()) {
         <div>
-          <p>Contacta por WhatsApp para participar en el regalo colectivo</p>
-
-          <a [href]="whatsappUrl()" target="_blank" rel="noopener noreferrer">
-            Escribir por WhatsApp
-          </a>
+          <p>Puedes contactarme para participar en el regalo colectivo.</p>
         </div>
       } @else {
         <p>No hay información de pago disponible</p>
       }
+      <a [href]="whatsappUrl()" target="_blank" rel="noopener noreferrer"> Escribir a WhatsApp </a>
 
       <button (click)="onClose()" type="button">Cerrar</button>
     </div>
