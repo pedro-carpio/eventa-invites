@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-templates',
@@ -10,13 +10,17 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
       opinión si lo necesitas
     </p>
     <ul>
-      @for (template of templateTitles(); track template) {
+      @for (template of templates; track template) {
         <li>
-          <h3>{{ template }}</h3>
-          <div>
-            <img [src]="'templates/' + template + '.webp'" [alt]="'Plantilla ' + template" />
-          </div>
-          <button>ver ejemplo</button>
+          <h3>{{ template.title }}</h3>
+          <a href="/{{ event }}/{{ template.id }}"
+            ><div>
+              <img
+                [src]="'templates/' + template.id + '.webp'"
+                [alt]="'Plantilla ' + template.title"
+              /></div
+          ></a>
+          <a href="/{{ event }}/{{ template.id }}">ver ejemplo</a>
           <button>seleccionar</button>
         </li>
       }
@@ -29,5 +33,11 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Templates {
-  templateTitles = input<string[]>([]);
+  @Input() templates!: template[];
+  @Input() event!: string;
+}
+
+export interface template {
+  title: string;
+  id: string;
 }
