@@ -108,8 +108,10 @@
       class="bg-white rounded-lg p-6 m-4 max-w-md w-full shadow-xl"
       (click)="$event.stopPropagation()"
     >
-      <app-location-modal [venue]="eventData()?.venue" (close)="closeLocationModal()">
-      </app-location-modal>
+      @if (eventData()?.venue) {
+        <app-location-modal [venue]="eventData()!.venue!" (close)="closeLocationModal()">
+        </app-location-modal>
+      }
     </div>
   </div>
 }

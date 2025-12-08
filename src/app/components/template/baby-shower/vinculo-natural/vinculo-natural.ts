@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input, signal, computed } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, signal, computed, inject } from '@angular/core';
 import { Contact } from '../../module/contact/contact';
 import { Countdown } from '../../module/countdown/countdown';
 import { Galery } from '../../module/galery/galery';
@@ -15,6 +15,7 @@ import { TemplateBase } from '../../template.base';
 import { InviteService } from '../../../../services/invite.service';
 import { ShareService } from '../../../../services/share.service';
 import { GoogleMapsService } from '../../../../services/maps.service';
+import { LocationService } from '../../../../services/location.service';
 
 /**
  * Componente para plantilla de Bautizo/Baby Shower
@@ -24,6 +25,7 @@ import { GoogleMapsService } from '../../../../services/maps.service';
  * - Mostrar datos del evento de bautizo
  * - Gestionar modales (ubicación, compartir)
  * - Coordinar datos entre módulos (rsvp, regalos, galería, etc.)
+ * - Usar LocationService para lógica de ubicación
  *
  * @example
  * ```html
@@ -53,6 +55,8 @@ import { GoogleMapsService } from '../../../../services/maps.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class VinculoNatural extends TemplateBase<BabyShower> {
+  private readonly locationService = inject(LocationService);
+
   // ===== INPUTS =====
   principalPhotoUrl = input<string>('https://placehold.co/600x400');
   eventDataInput = input<BabyShower | undefined>();
@@ -75,27 +79,17 @@ export class VinculoNatural extends TemplateBase<BabyShower> {
 
   /**
    * Calcula los datos de ubicación para el módulo de itinerario
+   * Usa LocationService para construir las actividades
    */
   readonly locationData = computed(() => {
     const event = this.eventData();
     if (!event) {
       return [];
     }
-
-    const venue = event.venue;
-    const activities: Activity[] = [
-      {
-        title: 'Lugar del evento',
-        name: venue.name,
-      },
-      {
-        title: 'Dirección',
-        name: `${venue.address}, ${venue.city}`,
-        action: this.openLocationModal.bind(this),
-        button: 'Ver Ubicación',
-      },
-    ];
-    return activities;
+    return this.locationService.getLocationActivities(
+      event.venue,
+      this.openLocationModal.bind(this),
+    );
   });
 
   /**
