@@ -86,7 +86,7 @@ import { CollectiveQrPayment } from '../../modal/collective-qr-payment/collectiv
       </div>
     }
   `,
-  styles: ``,
+  styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Gifts {

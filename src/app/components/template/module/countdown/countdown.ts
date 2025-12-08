@@ -14,7 +14,7 @@ import { Component, Input } from '@angular/core';
       <span>El evento ya ha pasado.</span>
     }
   `,
-  styles: ``,
+  styles: [],
 })
 export class Countdown {
   @Input() eventDate!: Date;

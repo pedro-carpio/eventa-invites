@@ -45,42 +45,7 @@ export type Note = {
       </div>
     </app-section>
   `,
-  styles: `
-    .notes-list {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .note-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.75rem;
-    }
-
-    .note-icon {
-      flex-shrink: 0;
-      color: var(--color-primary, #3b82f6);
-      font-size: 1.25rem;
-      margin-top: 0.125rem;
-    }
-
-    .note-text {
-      margin: 0;
-      color: var(--color-text-secondary, #6b7280);
-      line-height: 1.6;
-    }
-
-    @media (max-width: 640px) {
-      .note-item {
-        gap: 0.5rem;
-      }
-
-      .note-icon {
-        font-size: 1rem;
-      }
-    }
-  `,
+  styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Notes {

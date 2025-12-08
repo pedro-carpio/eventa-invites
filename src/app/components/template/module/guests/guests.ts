@@ -21,7 +21,7 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
       }
     </ul>
   `,
-  styles: ``,
+  styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Guests {

@@ -12,7 +12,7 @@ import { Component, Input } from '@angular/core';
       <a href="{{ groupLink }}">Unete al grupo de whatsapp!</a>
     }
   `,
-  styles: ``,
+  styles: [],
 })
 export class Contact {
   @Input() phoneNumber!: number;

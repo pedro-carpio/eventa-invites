@@ -9,7 +9,7 @@ import { Component } from '@angular/core';
     <button (click)="openTMaybe()">Tal vez</button>
     <button>Añadir a mi calendario</button>
   `,
-  styles: ``,
+  styles: [],
 })
 export class Rsvp {
   openAsist() {

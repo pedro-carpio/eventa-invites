@@ -13,7 +13,7 @@ import { Component, Input } from '@angular/core';
       }
     </div>
   `,
-  styles: ``,
+  styles: [],
 })
 export class Galery {
   @Input() title: string = 'Galería';
