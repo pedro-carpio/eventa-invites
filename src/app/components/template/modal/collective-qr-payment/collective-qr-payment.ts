@@ -4,31 +4,51 @@ import { ChangeDetectionStrategy, Component, input, output } from '@angular/core
   selector: 'app-collective-qr-payment',
   imports: [],
   template: `
-    <div>
-      <h2>{{ title() }}</h2>
-      <p>{{ description() }}</p>
+    <div class="modal-container">
+      <div class="flex justify-between items-start mb-4">
+        <h2 class="typography-h2">{{ title() }}</h2>
+        <button
+          (click)="onClose()"
+          type="button"
+          aria-label="Cerrar modal"
+          class="btn-accent text-sm px-3 py-1"
+        >
+          ✕
+        </button>
+      </div>
+
+      <p class="typography-2 mb-4">{{ description() }}</p>
 
       @if (qrCodeUrl()) {
-        <div>
-          <img [src]="qrCodeUrl()" alt="Código QR para pago colectivo" />
+        <div class="space-y-4">
+          <img
+            [src]="qrCodeUrl()"
+            alt="Código QR para pago colectivo"
+            class="w-full max-w-xs mx-auto"
+          />
 
           @if (paymentInstructions()) {
-            <p>{{ paymentInstructions() }}</p>
+            <p class="typography-3">{{ paymentInstructions() }}</p>
           }
 
-          <button (click)="copyQRCode()" type="button">Descargar QR</button>
-          <button (click)="shareQR()" type="button">Compartir</button>
+          <div class="flex gap-2 flex-wrap justify-center">
+            <button (click)="copyQRCode()" type="button" class="btn-accent">Descargar QR</button>
+            <button (click)="shareQR()" type="button" class="btn-accent">Compartir</button>
+          </div>
         </div>
       } @else if (contactWhatsapp()) {
         <div>
-          <p>Puedes contactarme para participar en el regalo colectivo.</p>
+          <p class="typography-3">Puedes contactarme para participar en el regalo colectivo.</p>
         </div>
       } @else {
-        <p>No hay información de pago disponible</p>
+        <p class="typography-3">No hay información de pago disponible</p>
       }
-      <a [href]="whatsappUrl()" target="_blank" rel="noopener noreferrer"> Escribir a WhatsApp </a>
 
-      <button (click)="onClose()" type="button">Cerrar</button>
+      <div class="mt-4 text-center">
+        <a [href]="whatsappUrl()" target="_blank" rel="noopener noreferrer" class="link-accent">
+          Escribir a WhatsApp
+        </a>
+      </div>
     </div>
   `,
   styles: [],

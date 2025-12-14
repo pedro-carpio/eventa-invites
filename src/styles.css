@@ -1,5 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
+@import url('https://fonts.googleapis.com/css2?family=Barriecito&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
 @import 'tailwindcss';
 
 @theme {
@@ -31,4 +33,105 @@
   --border: 1.5px;
   --depth: 1;
   --noise: 1;
+}
+
+@layer utilities {
+  @font-face {
+    font-family: 'Barriecito';
+    src: url('https://fonts.googleapis.com/css2?family=Barriecito&display=swap');
+  }
+
+  @font-face {
+    font-family: 'Quicksand';
+    src: url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+  }
+
+  .font-barriecito {
+    font-family: 'Barriecito', cursive;
+  }
+
+  .font-quicksand {
+    font-family: 'Quicksand', sans-serif;
+  }
+
+  /* Tipografía h2 - Títulos grandes */
+  .typography-h2 {
+    font-family: 'Barriecito', cursive;
+    font-size: 30px;
+    color: #222222;
+  }
+
+  /* Tipografía 2 - Información destacada */
+  .typography-2 {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    color: #222222;
+  }
+
+  /* Tipografía 3 - Genérico */
+  .typography-3 {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 13px;
+    color: #222222;
+    line-height: 1.6;
+  }
+
+  /* Estilos para botones */
+  .btn-accent {
+    background-color: #7fc29b;
+    color: #ffffff;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+    border: none;
+  }
+
+  .btn-accent:hover {
+    opacity: 0.9;
+    transform: scale(1.02);
+  }
+
+  .btn-accent:active {
+    transform: scale(0.98);
+  }
+
+  /* Estilos para enlaces */
+  .link-accent {
+    color: #7fc29b;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 500;
+    transition: opacity 0.2s ease-in-out;
+    text-decoration: underline;
+  }
+
+  .link-accent:hover {
+    opacity: 0.8;
+  }
+
+  /* Contenedor modal reutilizable */
+  .modal-container {
+    background-color: #f4f1f8;
+    border-radius: 1rem;
+    margin: 1rem;
+    padding: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Contenedor de contenido */
+  .container-invite {
+    background-color: #f4f1f8;
+    border-radius: 1rem;
+    margin: 1rem;
+    padding: 1rem;
+  }
+
+  /* Strong dentro de tipografías */
+  .typography-2 strong,
+  .typography-3 strong {
+    font-weight: 700;
+  }
 }

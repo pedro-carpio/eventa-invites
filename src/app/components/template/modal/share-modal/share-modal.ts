@@ -51,29 +51,53 @@ export interface ShareData {
   imports: [CommonModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <div>
-      <h2>{{ shareData()?.meta?.title || 'Compartir Evento' }}</h2>
-      <button (click)="onClose()" type="button" aria-label="Cerrar modal">Cerrar</button>
+    <div class="modal-container">
+      <div class="flex justify-between items-start mb-4">
+        <h2 class="typography-h2">{{ shareData()?.meta?.title || 'Compartir Evento' }}</h2>
+        <button
+          (click)="onClose()"
+          type="button"
+          aria-label="Cerrar modal"
+          class="btn-accent text-sm px-3 py-1"
+        >
+          ✕
+        </button>
+      </div>
 
-      <p>
+      <p class="typography-2 mb-4">
         {{ shareData()?.meta?.description || 'Comparte este evento con tus amigos y familiares' }}
       </p>
-      <button (click)="shareOnFacebook()" type="button">Facebook</button>
-      <button (click)="shareOnWhatsApp()" type="button">WhatsApp</button>
-      <button (click)="copyLink()" type="button">Copiar enlace</button>
 
-      <h3>Código QR</h3>
-      <p>Escanea para acceder al evento</p>
-      @if (qrCodeDataUrl(); as qrUrl) {
-        <img [src]="qrUrl" alt="Código QR del evento" />
-        <button (click)="downloadQRCode()" type="button">Descargar QR</button>
-      } @else {
-        <p>Generando código QR...</p>
-      }
+      <div class="flex gap-2 flex-wrap mb-6 justify-center">
+        <button (click)="shareOnFacebook()" type="button" class="btn-accent">Facebook</button>
+        <button (click)="shareOnWhatsApp()" type="button" class="btn-accent">WhatsApp</button>
+        <button (click)="copyLink()" type="button" class="btn-accent">Copiar enlace</button>
+      </div>
 
-      <h3>Enlace del evento</h3>
-      <p>{{ currentUrl() }}</p>
-      <button (click)="copyLink()" type="button">Copiar URL</button>
+      <div class="space-y-4">
+        <div>
+          <p class="typography-2 font-bold mb-3">Código QR</p>
+          <p class="typography-3 mb-3">Escanea para acceder al evento</p>
+          @if (qrCodeDataUrl(); as qrUrl) {
+            <img [src]="qrUrl" alt="Código QR del evento" class="w-full max-w-xs mx-auto mb-3" />
+            <div class="text-center">
+              <button (click)="downloadQRCode()" type="button" class="btn-accent">
+                Descargar QR
+              </button>
+            </div>
+          } @else {
+            <p class="typography-3">Generando código QR...</p>
+          }
+        </div>
+
+        <div class="pt-4">
+          <p class="typography-2 font-bold mb-2">Enlace del evento</p>
+          <p class="typography-3 break-all mb-3">{{ currentUrl() }}</p>
+          <div class="text-center">
+            <button (click)="copyLink()" type="button" class="btn-accent">Copiar URL</button>
+          </div>
+        </div>
+      </div>
     </div>
   `,
 })

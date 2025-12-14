@@ -1,6 +1,4 @@
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { SectionComponent, SectionConfig } from '../../section/section.component';
 
 /**
  * Tipo para una nota individual
@@ -32,18 +30,28 @@ export type Note = {
 @Component({
   selector: 'app-notes',
   standalone: true,
-  imports: [CommonModule, SectionComponent],
+  imports: [],
   template: `
-    <app-section [config]="sectionConfig()">
-      <div class="notes-list">
+    <div class="w-full max-w-md rounded-2xl p-4 text-center" style="background-color: #F4F1F8">
+      <h2 class="text-2xl font-barriecito mb-4" style="color: #222222">
+        {{ title() }}
+      </h2>
+      <div class="flex flex-col gap-3">
         @for (note of content(); track note.text) {
-          <div class="note-item">
-            <span class="note-icon material-symbols-rounded">{{ note.icon }}</span>
-            <p class="note-text">{{ note.text }}</p>
+          <div
+            class="flex flex-col items-center gap-2 p-3 rounded-lg"
+            style="background-color: #f9f7fc"
+          >
+            <span class="material-symbols-rounded text-lg" style="color: #7fc29b">
+              {{ note.icon }}
+            </span>
+            <p class="text-xs" style="font-family: 'Quicksand', sans-serif; color: #222222">
+              {{ note.text }}
+            </p>
           </div>
         }
       </div>
-    </app-section>
+    </div>
   `,
   styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -58,7 +66,11 @@ export class Notes {
   /**
    * Computed signal para configuración de sección
    */
-  protected sectionConfig = computed<SectionConfig<Note[]>>(() => ({
+  protected readonly sectionConfig = computed<{
+    title: string;
+    description: string;
+    content: Note[];
+  }>(() => ({
     title: this.title(),
     description: '',
     content: this.content(),

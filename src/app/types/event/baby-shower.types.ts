@@ -68,7 +68,7 @@ export type BabyShowerSections = {
     enabled: boolean;
     title?: string;
     description?: string;
-    tag: string;
+    tag?: string;
   };
   sharing?: {
     enabled: boolean;

@@ -14,11 +14,7 @@ import { Includes } from '../includes/includes';
     <app-includes [items]="event().includes" />
     <app-footer />
   `,
-  styles: `
-    h1 {
-      color: red;
-    }
-  `,
+  styles: ``,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BabyShower {

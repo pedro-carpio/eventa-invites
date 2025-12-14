@@ -1,6 +1,4 @@
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { SectionComponent, SectionConfig } from '../../section/section.component';
 
 /**
  * Tipo para una actividad en el itinerario
@@ -41,35 +39,49 @@ export type Activity = {
 @Component({
   selector: 'app-itinerary',
   standalone: true,
-  imports: [CommonModule, SectionComponent],
+  imports: [],
   template: `
-    <app-section [config]="sectionConfig()">
-      <div class="activities-list">
+    <div class="w-full max-w-md rounded-2xl p-4 text-center" style="background-color: #F4F1F8">
+      <h2 class="text-2xl font-barriecito mb-4" style="color: #222222">
+        {{ title() }}
+      </h2>
+      <div class="flex flex-col gap-3">
         @for (activity of activities(); track activity.name) {
-          <div class="activity-item" [class.has-action]="activity.action">
+          <div class="p-3 rounded-lg" style="background-color: #f9f7fc">
             @if (activity.icon) {
-              <span class="activity-icon material-symbols-rounded">
+              <span class="material-symbols-rounded block text-lg mb-1" style="color: #7fc29b">
                 {{ activity.icon }}
               </span>
             }
-            <div class="activity-content">
-              @if (activity.title) {
-                <strong class="activity-title">{{ activity.title }}</strong>
-              }
-              <p class="activity-name">{{ activity.name }}</p>
-              @if (activity.time) {
-                <span class="activity-time">⏰ {{ activity.time }}</span>
-              }
-            </div>
+            @if (activity.title) {
+              <p
+                class="text-sm font-bold mb-1"
+                style="font-family: 'Quicksand', sans-serif; color: #222222"
+              >
+                {{ activity.title }}
+              </p>
+            }
+            <p class="text-xs mb-1" style="font-family: 'Quicksand', sans-serif; color: #222222">
+              {{ activity.name }}
+            </p>
+            @if (activity.time) {
+              <p class="text-xs" style="font-family: 'Quicksand', sans-serif; color: #7fc29b">
+                ⏰ {{ activity.time }}
+              </p>
+            }
             @if (activity.action && activity.button) {
-              <button class="activity-button" (click)="activity.action!()" type="button">
+              <button
+                (click)="activity.action!()"
+                class="w-full mt-2 px-4 py-2 rounded-lg text-white font-quicksand text-xs"
+                style="background-color: #7fc29b"
+              >
                 {{ activity.button }}
               </button>
             }
           </div>
         }
       </div>
-    </app-section>
+    </div>
   `,
   styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -90,7 +102,12 @@ export class Itinerary {
   /**
    * Computed signal para configuración de sección
    */
-  protected sectionConfig = computed<SectionConfig<Activity[]>>(() => ({
+  protected readonly sectionConfig = computed<{
+    title: string;
+    icon?: string;
+    description: string;
+    content: Activity[];
+  }>(() => ({
     title: this.title(),
     icon: this.icon(),
     description: '',

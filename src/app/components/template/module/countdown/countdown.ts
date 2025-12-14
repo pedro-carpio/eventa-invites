@@ -4,15 +4,47 @@ import { Component, Input } from '@angular/core';
   selector: 'app-countdown',
   imports: [],
   template: `
-    <h2>Faltan</h2>
-    @if (!hasPassed) {
-      <span>{{ timeLeft.days }} días, </span>
-      <span>{{ timeLeft.hours }} horas, </span>
-      <span>{{ timeLeft.minutes }} minutos, </span>
-      <span>{{ timeLeft.seconds }} segundos</span>
-    } @else {
-      <span>El evento ya ha pasado.</span>
-    }
+    <div class="w-full max-w-md rounded-2xl p-4 text-center" style="background-color: #F4F1F8">
+      <h2 class="text-2xl font-barriecito mb-3" style="color: #222222">Faltan</h2>
+      @if (!hasPassed) {
+        <div class="flex justify-around gap-2">
+          <div>
+            <p class="text-2xl font-barriecito" style="color: #7fc29b">
+              {{ timeLeft.days }}
+            </p>
+            <p class="text-xs" style="font-family: 'Quicksand', sans-serif; color: #222222">días</p>
+          </div>
+          <div>
+            <p class="text-2xl font-barriecito" style="color: #7fc29b">
+              {{ timeLeft.hours }}
+            </p>
+            <p class="text-xs" style="font-family: 'Quicksand', sans-serif; color: #222222">
+              horas
+            </p>
+          </div>
+          <div>
+            <p class="text-2xl font-barriecito" style="color: #7fc29b">
+              {{ timeLeft.minutes }}
+            </p>
+            <p class="text-xs" style="font-family: 'Quicksand', sans-serif; color: #222222">
+              minutos
+            </p>
+          </div>
+          <div>
+            <p class="text-2xl font-barriecito" style="color: #7fc29b">
+              {{ timeLeft.seconds }}
+            </p>
+            <p class="text-xs" style="font-family: 'Quicksand', sans-serif; color: #222222">
+              segundos
+            </p>
+          </div>
+        </div>
+      } @else {
+        <p class="text-sm" style="font-family: 'Quicksand', sans-serif; color: #222222">
+          El evento ya ha pasado.
+        </p>
+      }
+    </div>
   `,
   styles: [],
 })

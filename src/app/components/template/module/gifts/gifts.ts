@@ -5,64 +5,92 @@ import { CollectiveQrPayment } from '../../modal/collective-qr-payment/collectiv
   selector: 'app-gifts',
   imports: [CollectiveQrPayment],
   template: `
-    <section class="space-y-6">
-      <h2>{{ title() }}</h2>
+    <div class="w-full max-w-md rounded-2xl p-4 text-center" style="background-color: #F4F1F8">
+      <h2 class="text-2xl font-barriecito mb-3" style="color: #222222">
+        {{ title() }}
+      </h2>
 
       @if (ideas().length > 0) {
-        <div>
-          <h3>{{ subtitle() }}</h3>
+        <div class="mb-4">
+          <h3 class="text-sm mb-3" style="font-family: 'Quicksand', sans-serif; color: #222222">
+            {{ subtitle() }}
+          </h3>
 
-          <div>
+          <div class="flex flex-col gap-3 mb-4">
             @for (idea of ideas(); track idea.title) {
-              <div>
-                <a [href]="idea.link" target="_blank" rel="noopener noreferrer">
-                  <img [src]="idea.imgUrl" [alt]="idea.title" />
-                  <div>
-                    <p>{{ idea.title }}</p>
-                  </div>
-                </a>
-              </div>
+              <a
+                [href]="idea.link"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="block rounded-lg p-3"
+                style="background-color: #f9f7fc"
+              >
+                <img [src]="idea.imgUrl" [alt]="idea.title" class="w-full rounded-lg mb-2" />
+                <p class="text-xs" style="font-family: 'Quicksand', sans-serif; color: #222222">
+                  {{ idea.title }}
+                </p>
+              </a>
             }
           </div>
 
           @if (wishlistLink() && wishlistTag()) {
-            <div>
-              <a [href]="wishlistLink()" target="_blank" rel="noopener noreferrer">
-                <span class="material-symbols-rounded">list_alt</span>
-                {{ wishlistTag() }}
-              </a>
-            </div>
+            <a
+              [href]="wishlistLink()"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-block px-4 py-2 rounded-lg text-white font-quicksand mb-4"
+              style="background-color: #7fc29b"
+            >
+              <span class="material-symbols-rounded text-sm">list_alt</span>
+              {{ wishlistTag() }}
+            </a>
           }
 
           @if (collectiveGift()) {
-            <div class="">
-              <span class="material-symbols-rounded">redeem</span>
-              <div>
-                <h4>{{ collectiveGiftTitle() }}</h4>
-                <p>{{ collectiveGiftDescription() }}</p>
-              </div>
-              <button (click)="openCollectiveGiftModal()">
-                <span class="material-symbols-rounded">payments</span>
+            <div
+              class="p-3 rounded-lg mb-4"
+              style="background-color: #f9f7fc; border: 2px solid #7fc29b"
+            >
+              <span class="material-symbols-rounded block text-2xl mb-2" style="color: #7fc29b">
+                redeem
+              </span>
+              <h4
+                class="text-sm font-bold mb-1"
+                style="font-family: 'Quicksand', sans-serif; color: #222222"
+              >
+                {{ collectiveGiftTitle() }}
+              </h4>
+              <p class="text-xs mb-3" style="font-family: 'Quicksand', sans-serif; color: #222222">
+                {{ collectiveGiftDescription() }}
+              </p>
+              <button
+                (click)="openCollectiveGiftModal()"
+                class="w-full px-4 py-2 rounded-lg text-white font-quicksand"
+                style="background-color: #7fc29b"
+              >
+                <span class="material-symbols-rounded text-sm">payments</span>
                 {{ collectiveGiftButtonTag() }}
               </button>
             </div>
           }
 
           @if (additionalInfo()) {
-            <div>
-              <p>{{ additionalInfo() }}</p>
-            </div>
+            <p class="text-xs" style="font-family: 'Quicksand', sans-serif; color: #222222">
+              {{ additionalInfo() }}
+            </p>
           }
         </div>
       } @else {
         <div class="text-center py-8">
-          <span class="material-symbols-rounded text-gray-400 text-4xl mb-2 block"
-            >card_giftcard</span
-          >
-          <p class="text-gray-500">No hay ideas de regalos disponibles</p>
+          <span class="material-symbols-rounded text-4xl mb-2 block" style="color: #7fc29b">
+            card_giftcard
+          </span>
+          <p class="text-xs" style="font-family: 'Quicksand', sans-serif; color: #7fc29b">
+            Tu presencia es el regalo más preciado
+          </p>
         </div>
       }
-    </section>
+    </div>
 
     <!-- Collective Payment Modal -->
     @if (isCollectiveModalOpen()) {

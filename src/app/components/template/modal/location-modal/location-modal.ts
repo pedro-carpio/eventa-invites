@@ -30,29 +30,50 @@ import { LocationService } from '../../../../services/location.service';
   imports: [CommonModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <div>
-      <h2>{{ venue().name || 'Ubicación' }}</h2>
-      <button (click)="onClose()" type="button" aria-label="Cerrar modal">Cerrar</button>
+    <div class="modal-container">
+      <div class="flex justify-between items-start mb-4">
+        <h2 class="typography-h2">{{ venue().name || 'Ubicación' }}</h2>
+        <button
+          (click)="onClose()"
+          type="button"
+          aria-label="Cerrar modal"
+          class="btn-accent text-sm px-3 py-1"
+        >
+          ✕
+        </button>
+      </div>
 
-      <h3>Lugar</h3>
-      <p>{{ venue().name }}</p>
+      <div class="space-y-4">
+        <div>
+          <p class="typography-2 font-bold mb-2">Lugar</p>
+          <p class="typography-3">{{ venue().name }}</p>
+        </div>
 
-      <h3>Dirección</h3>
-      <p>{{ venue().address }}</p>
-      <p>
-        {{ venue().city }}
-        @if (venue().state) {
-          , {{ venue().state }}
+        <div>
+          <p class="typography-2 font-bold mb-2">Dirección</p>
+          <p class="typography-3">{{ venue().address }}</p>
+          <p class="typography-3">
+            {{ venue().city }}
+            @if (venue().state) {
+              , {{ venue().state }}
+            }
+          </p>
+          <p class="typography-3">{{ venue().country }}</p>
+        </div>
+
+        @if (venue().instructions) {
+          <div>
+            <p class="typography-2 font-bold mb-2">Detalles</p>
+            <p class="typography-3">{{ venue().instructions }}</p>
+          </div>
         }
-      </p>
-      <p>{{ venue().country }}</p>
 
-      @if (venue().instructions) {
-        <h3>Detalles</h3>
-        <p>{{ venue().instructions }}</p>
-      }
-
-      <a [href]="mapUrl()" target="_blank" rel="noopener noreferrer"> Ver en Google Maps </a>
+        <div class="text-center pt-2">
+          <a [href]="mapUrl()" target="_blank" rel="noopener noreferrer" class="link-accent">
+            Ver en Google Maps
+          </a>
+        </div>
+      </div>
     </div>
   `,
 })

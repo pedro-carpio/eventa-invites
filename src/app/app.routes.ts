@@ -31,4 +31,14 @@ export const routes: Routes = [
       },
     ],
   },
+  {
+    path: 'invitacion',
+    children: [
+      {
+        path: 'croac',
+        loadComponent: () =>
+          import('./components/event/baby-shower/invite').then((m) => m.InviteDemo),
+      },
+    ],
+  },
 ];

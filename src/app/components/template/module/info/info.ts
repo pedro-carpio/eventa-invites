@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
-import { SectionComponent, SectionConfig } from '../../section/section.component';
 
 /**
  * Componente Info: Sección informativa genérica
@@ -27,10 +26,42 @@ import { SectionComponent, SectionConfig } from '../../section/section.component
 @Component({
   selector: 'app-info',
   standalone: true,
-  imports: [SectionComponent],
+  imports: [],
   template: `
-    <app-section [config]="sectionConfig()" (actionClicked)="onActionClick()"></app-section>
+    <div class="w-full max-w-md rounded-2xl p-4 text-center" style="background-color: #F4F1F8">
+      @if (icon()) {
+        <span class="material-symbols-rounded block text-2xl mb-2" style="color: #7fc29b">
+          {{ icon() }}
+        </span>
+      }
+      <h2 class="text-2xl font-barriecito mb-3" style="color: #222222">
+        {{ title() }}
+      </h2>
+      <p class="text-xs mb-4" style="font-family: 'Quicksand', sans-serif; color: #222222">
+        {{ description() }}
+      </p>
+      @if (link() && (linkTag() || actionTag())) {
+        <a
+          [href]="link()"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-block px-4 py-2 rounded-lg text-white font-quicksand"
+          style="background-color: #7fc29b"
+        >
+          {{ linkTag() || actionTag() }}
+        </a>
+      } @else if (action()) {
+        <button
+          (click)="onActionClick()"
+          class="px-4 py-2 rounded-lg text-white font-quicksand"
+          style="background-color: #7fc29b"
+        >
+          {{ linkTag() || actionTag() || 'Accionar' }}
+        </button>
+      }
+    </div>
   `,
+  styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Info {
@@ -58,7 +89,15 @@ export class Info {
   /**
    * Computed signal para configuración de sección
    */
-  protected sectionConfig = computed<SectionConfig>(() => {
+  protected readonly sectionConfig = computed<{
+    title: string;
+    icon?: string;
+    description: string;
+    link?: string;
+    linkTag?: string;
+    actionButton?: { label: string; action: () => void };
+    content: null;
+  }>(() => {
     const tag = this.linkTag() || this.actionTag();
     return {
       title: this.title(),

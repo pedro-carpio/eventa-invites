@@ -4,7 +4,6 @@ import { Countdown } from '../../module/countdown/countdown';
 import { Galery } from '../../module/galery/galery';
 import { Guests } from '../../module/guests/guests';
 import { Info } from '../../module/info/info';
-import { Itinerary } from '../../module/itinerary/itinerary';
 import { Rsvp } from '../../module/rsvp/rsvp';
 import { ShareModal } from '../../modal/share-modal/share-modal';
 import { BabyShower } from '../../../../types/event/baby-shower.types';
@@ -43,7 +42,6 @@ import { LocationService } from '../../../../services/location.service';
     Galery,
     Guests,
     Info,
-    Itinerary,
     Rsvp,
     Notes,
     Gifts,
@@ -105,12 +103,13 @@ export class VinculoNatural extends TemplateBase<BabyShower> {
 
   /**
    * Carga los datos del evento (implementación abstracta)
-   * Intenta usar el input, sino carga datos de demo
+   * Prioriza el input, sino carga datos de demo
    */
   protected override loadEventData(): void {
     const inputEvent = this.eventDataInput();
 
-    if (inputEvent && this.isEventValid()) {
+    // Si hay input, usar directamente sin validación
+    if (inputEvent) {
       this.eventData.set(inputEvent);
     } else {
       // Carga datos de demostración
