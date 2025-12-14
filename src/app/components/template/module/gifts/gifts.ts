@@ -99,7 +99,7 @@ import { CollectiveQrPayment } from '../../modal/collective-qr-payment/collectiv
         (click)="closeCollectiveModal()"
       >
         <div
-          class="bg-white rounded-lg p-6 m-4 max-w-md w-full shadow-xl"
+          class="bg-white rounded-lg m-4 max-w-md w-full shadow-xl"
           (click)="$event.stopPropagation()"
         >
           <app-collective-qr-payment

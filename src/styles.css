@@ -116,7 +116,6 @@
   .modal-container {
     background-color: #f4f1f8;
     border-radius: 1rem;
-    margin: 1rem;
     padding: 1rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
@@ -126,7 +125,6 @@
     background-color: #f4f1f8;
     border-radius: 1rem;
     margin: 1rem;
-    padding: 1rem;
   }
 
   /* Strong dentro de tipografías */

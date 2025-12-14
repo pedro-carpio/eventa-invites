@@ -5,7 +5,7 @@ import { ChangeDetectionStrategy, Component, input, output } from '@angular/core
   imports: [],
   template: `
     <div class="modal-container">
-      <div class="flex justify-between items-start mb-4">
+      <div class="flex justify-between items-start">
         <h2 class="typography-h2">{{ title() }}</h2>
         <button
           (click)="onClose()"

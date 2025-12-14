@@ -1,0 +1,332 @@
+<div
+  class="flex flex-col items-center justify-center min-h-screen"
+  style="background-color: #7fc29b"
+>
+  <div
+    class="container-invite flex flex-col items-center w-full rounded-2xl overflow-y-hidden overflow-x-hidden"
+    style="max-width: calc(min(100% - 2em, 1080px))"
+  >
+    <!-- 1. Título Principal con banderines -->
+    <div class="flex items-start justify-center gap-4 w-full">
+      <img
+        src="/croac.webp"
+        alt="Banderín izquierdo"
+        class="w-50 sm:w-80 md:w-100 object-cover flex-shrink-0"
+      />
+      <h2
+        class="typography-h2 text-center px-4 py-2 rounded-lg"
+        style="background-color: #f4f1f8; font-size: 80px; align-self: flex-end"
+      >
+        ¡Hola!
+      </h2>
+      <img
+        src="/croac.webp"
+        alt="Banderín derecho"
+        class="w-50 sm:w-80 md:w-100 object-cover flex-shrink-0"
+      />
+    </div>
+
+    <!-- 2. Imagen + Quote -->
+    <div class="w-full max-w-2xl flex flex-col items-center gap-4">
+      <img src="/croac.webp" alt="Sapito" class="w-full max-w-xs rounded-l object-cover" />
+      <p class="typography-2 text-center px-4">
+        <span class="text-2xl" style="color: #7fc29b">"</span>
+        Pequeños charcos de agua, hojas frescas y el dulce croar anuncian la llegada de mi retoño
+        <span class="text-2xl" style="color: #7fc29b">"</span>
+      </p>
+    </div>
+
+    <!-- 3. Sección Izquierda - Invitación Principal -->
+    <div class="w-full max-w-2xl flex flex-col gap-4 items-center">
+      <!-- Imagen arriba -->
+      <div class="w-full flex justify-end">
+        <img src="/croac.webp" alt="Decoración" class="w-full max-w-xs rounded-l object-cover" />
+      </div>
+
+      <!-- Contenido abajo -->
+      <div class="w-full max-w-lg flex flex-col gap-3">
+        <p class="typography-2">Te invito a celebrar la dulce espera de mi pequeño renacuajo</p>
+        <p class="typography-3">
+          Con mi corazón lleno de alegría y paz, quiero invitarte al
+          <strong>baby shower</strong> de mi pequeñito que pronto dará un gran brinco a mis brazos y
+          a nuestras vidas.
+        </p>
+      </div>
+    </div>
+
+    <!-- 4. Imagen + Contenido Descriptivo -->
+    <div class="w-full max-w-2xl relative h-48 md:h-64">
+      <!-- Fondo de ancho completo (z-index bajo) -->
+      <div class="absolute inset-0 section-container z-0"></div>
+
+      <!-- Imagen (z-index bajo) -->
+      <div class="absolute left-0 top-0 z-0">
+        <img src="/croac.webp" alt="Decoración" class="h-32 md:h-48 rounded-l object-cover" />
+      </div>
+
+      <!-- Contenido (z-index alto, sangra sobre la imagen) -->
+      <div class="absolute inset-0 z-10 flex flex-col gap-3 justify-end px-4 py-6">
+        <div class="flex justify-end">
+          <div class="w-3/5">
+            <p class="typography-3 text-center px-4">
+              Mi bebé y yo hemos preparado un día inspirado en los sonidos del agua, la magia del
+              bosque y, por supuesto, muchos animalitos…
+            </p>
+            <p class="typography-2 text-center">
+              ¡Especialmente en adorables <strong>ranitas</strong>!
+            </p>
+            <p class="typography-3 text-center text-sm px-4">
+              (además que adelantaremos navidad, será una fiesta anfibia pre navideña)
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. Sección Derecha - ¿Cuándo? -->
+    <div class="w-full max-w-2xl relative h-48 md:h-64">
+      <!-- Fondo de ancho completo (z-index bajo) -->
+      <div class="absolute inset-0 section-container z-0"></div>
+
+      <!-- Imagen (z-index bajo, derecha) -->
+      <div class="absolute right-0 top-0 z-0">
+        <img src="/croac.webp" alt="Decoración" class="h-32 md:h-48 rounded-r object-cover" />
+      </div>
+
+      <!-- Contenido (z-index alto, sangra sobre la imagen) -->
+      <div class="absolute inset-0 z-10 flex flex-col gap-3 justify-end px-4 py-6">
+        <div class="flex justify-start">
+          <div class="w-3/5">
+            <h2 class="typography-h2 text-left">¿Cuándo?</h2>
+            <p class="typography-2 text-left">
+              20 de diciembre<br />
+              a partir de las 5 pm<br />
+              en el país de las maravillas
+            </p>
+            <button (click)="openLocationModal()" class="btn-accent">ver ubicación</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. Temática - Centro -->
+    <div class="w-full max-w-2xl flex flex-col items-center gap-4">
+      <div class="flex gap-4 items-center justify-between w-full">
+        <img src="/croac.webp" alt="Decoración" class="w-12 h-12 md:w-16 md:h-16 object-cover" />
+        <h2 class="typography-h2">¿la temática?</h2>
+        <img src="/croac.webp" alt="Decoración" class="w-12 h-12 md:w-16 md:h-16 object-cover" />
+      </div>
+
+      <div class="section-container text-center max-w-xs">
+        <p class="typography-2 mb-3" style="color: #7fc29b; font-size: 80px">VERDE</p>
+        <p class="typography-3 mb-4">
+          para nosotros el verde significa:
+          <br />
+          vida silvestre
+          <br />
+          botánica
+          <br />
+          dinosaurios (esos ya no cuentan como vivos jeje)
+        </p>
+      </div>
+
+      <p class="typography-2 max-w-xl text-center">
+        te animamos a vestir algo verde o colores neutros si lo deseas
+      </p>
+
+      <div class="flex gap-4 justify-between w-full">
+        <img
+          src="/croac.webp"
+          alt="Decoración"
+          class="w-12 h-12 md:w-16 md:h-16 rounded-full object-cover"
+        />
+        <img
+          src="/croac.webp"
+          alt="Decoración"
+          class="w-12 h-12 md:w-16 md:h-16 rounded-full object-cover"
+        />
+      </div>
+    </div>
+
+    <!-- 7. Regalos -->
+    <div class="w-full max-w-2xl flex flex-col gap-4">
+      <p class="typography-2 text-center px-4">
+        <strong>Tu presencia será el regalo mas preciado en esta ocasión…</strong>
+      </p>
+
+      <p class="typography-3 text-center px-4">
+        pero en caso de querer compartir tu amor con mi pequeñito o conmigo…
+      </p>
+
+      <p class="typography-3 text-center px-4">
+        aca te dejo algunas
+        <a class="link-accent">ideas</a>
+        y por supuesto nuestra
+        <a class="link-accent">lista de deseos</a>
+      </p>
+
+      <p class="typography-3 text-center px-4">
+        en caso de no decidirte por alguno… no te preocupes!<br />
+        también estamos haciendo vaquita para comprar lo necesario,
+        <strong>lo dejamos a tu cariño</strong>
+      </p>
+
+      <div class="text-center">
+        <button (click)="openCollectiveQrModal()" class="btn-accent">Ver qr</button>
+      </div>
+
+      <p class="typography-3 text-center px-4 mb-10">
+        y por supuesto puedes traer un
+        <strong>regalo hecho a mano</strong>
+        ¡lo amaremos aún más!
+      </p>
+    </div>
+
+    <!-- 8. Imagen central -->
+    <div class="w-full max-w-2xl flex items-center justify-center gap-4">
+      <img
+        src="/croac.webp"
+        alt="Decoración"
+        class="w-full max-w-xs mx-auto rounded-l object-cover"
+      />
+    </div>
+
+    <!-- 9. Información Importante -->
+    <div class="w-full max-w-2xl section-container">
+      <h2 class="typography-h2 text-center mb-4">INFORMACIÓN IMPORTANTE</h2>
+
+      <p class="typography-3 mb-4">Esta invitación te incluye a ti y si gustas un acompañante</p>
+
+      <p class="typography-3 mb-4">
+        NO OLVIDES
+        <strong>CONFIRMAR TU ASISTENCIA</strong>
+        Y/O LA DE TU ACOMPAÑANTE A MÁS TARDAR
+        <strong>HASTA EL JUEVES 18 DE DIC</strong>
+      </p>
+
+      <div class="text-center mb-4">
+        <button (click)="openWhatsappRsvp()" class="btn-accent">Registrate aquí</button>
+      </div>
+
+      <p class="typography-3 mb-10">
+        En esta ocasión la comida y bebidas serán bastante naturales y frescas. En caso de querer
+        llevar algo para compartir solo considera que:
+        <strong>no habrá bebidas con alcohol y tampoco áreas para fumar</strong>
+      </p>
+    </div>
+
+    <!-- 10. Líneas decorativas + Imagen central (segunda) -->
+    <div class="w-full max-w-2xl flex items-center justify-center gap-4">
+      <svg
+        class="flex-1 h-0.5"
+        style="background: linear-gradient(to right, #7fc29b, transparent)"
+      ></svg>
+      <img
+        src="/croac.webp"
+        alt="Decoración"
+        class="w-12 h-12 md:w-16 md:h-16 rounded-full object-cover"
+      />
+      <svg
+        class="flex-1 h-0.5"
+        style="background: linear-gradient(to left, #7fc29b, transparent)"
+      ></svg>
+    </div>
+
+    <!-- 11. Contacto -->
+    <div class="w-full max-w-2xl text-center m">
+      <p class="typography-2 mb-3">¿Tienes alguna duda o dato que deba saber?</p>
+      <a href="https://instagram.com/la_china_supay" target="_blank" class="link-accent">hablame</a>
+    </div>
+
+    <!-- 12. Despedida -->
+    <div class="w-full max-w-2xl section-container text-center mb-10">
+      <p class="typography-3 mb-3">
+        Sin más que agregar y esperando que puedas acompañarnos… me despido.
+      </p>
+
+      <p class="typography-2 font-bold mb-3">atentamente:</p>
+
+      <p class="typography-3">
+        Belen/china supay/mamá rana<br />
+        y obviamente el protagonista de este gran evento…
+        <strong>mi bebé ❤</strong>
+      </p>
+    </div>
+
+    <!-- 13. Líneas decorativas + Imagen central (segunda) -->
+    <div class="w-full max-w-2xl flex items-center justify-center gap-4">
+      <svg
+        class="flex-1 h-0.5"
+        style="background: linear-gradient(to right, #7fc29b, transparent)"
+      ></svg>
+      <img
+        src="/croac.webp"
+        alt="Decoración"
+        class="w-12 h-12 md:w-16 md:h-16 rounded-full object-cover"
+      />
+      <svg
+        class="flex-1 h-0.5"
+        style="background: linear-gradient(to left, #7fc29b, transparent)"
+      ></svg>
+    </div>
+
+    <!-- 14. Countdown -->
+    <div class="w-full max-w-2xl text-center section-container">
+      <h2 class="typography-h2 mb-4">FALTAN</h2>
+
+      <div class="flex justify-center gap-4 flex-wrap">
+        <div>
+          <p class="typography-h2">{{ timeRemaining().days }}</p>
+          <p class="typography-2">DÍAS,</p>
+        </div>
+        <div>
+          <p class="typography-h2">{{ timeRemaining().hours }}</p>
+          <p class="typography-2">HRS,</p>
+        </div>
+        <div>
+          <p class="typography-h2">{{ timeRemaining().minutes }}</p>
+          <p class="typography-2">MIN,</p>
+        </div>
+        <div>
+          <p class="typography-h2">{{ timeRemaining().seconds }}</p>
+          <p class="typography-2">SEG</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 15. Imagen final -->
+    <img src="/croac.webp" alt="Decoración" class="w-full max-w-xs rounded-l object-cover" />
+
+    <!-- Location Modal -->
+    @if (isLocationModalOpen()) {
+      <app-shared-modal-wrapper (close)="closeLocationModal()" [isOpen]="isLocationModalOpen()">
+        @if (eventData()?.venue) {
+          <app-location-modal [venue]="eventData()!.venue!" (close)="closeLocationModal()">
+          </app-location-modal>
+        }
+      </app-shared-modal-wrapper>
+    }
+
+    <!-- Collective QR Payment Modal -->
+    @if (isCollectiveQrModalOpen()) {
+      <app-shared-modal-wrapper
+        (close)="closeCollectiveQrModal()"
+        [isOpen]="isCollectiveQrModalOpen()"
+      >
+        @if (eventData()) {
+          <app-collective-qr-payment
+            [title]="eventData()!.sections.gift?.collectiveGiftTitle || 'Regalo Colectivo'"
+            [description]="
+              eventData()!.sections.gift?.collectiveGiftDescription ||
+              'Estamos haciendo vaquita para comprar lo necesario'
+            "
+            [qrCodeUrl]="collectiveQrUrl()"
+            [paymentInstructions]="collectiveQrInstructions()"
+            [contactWhatsapp]="whatsappNumber()"
+            (close)="closeCollectiveQrModal()"
+          ></app-collective-qr-payment>
+        }
+      </app-shared-modal-wrapper>
+    }
+  </div>
+</div>

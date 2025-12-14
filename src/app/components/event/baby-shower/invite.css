@@ -1,0 +1,87 @@
+/* Estilos reutilizables para el componente invite */
+
+/* Contenedor de sección */
+.section-container {
+  background-color: #f4f1f8;
+  border-radius: 1rem;
+  padding: 1rem;
+  margin: 0;
+}
+
+/* Espaciado vertical entre secciones */
+.section-gap {
+  gap: 1.5rem;
+}
+
+/* Estilos para líneas decorativas */
+.decorator-line {
+  height: 1px;
+  background: linear-gradient(to right, #7fc29b, transparent);
+}
+
+.decorator-line-reverse {
+  height: 1px;
+  background: linear-gradient(to left, #7fc29b, transparent);
+}
+
+/* Imagen redonda pequeña para decoración */
+.image-decorator {
+  width: 3rem;
+  height: 3rem;
+  object-fit: cover;
+}
+
+@media (min-width: 768px) {
+  .image-decorator {
+    width: 4rem;
+    height: 4rem;
+  }
+}
+
+/* Imagen grande para secciones */
+.image-section {
+  width: 100%;
+  max-width: 20rem;
+  object-fit: cover;
+}
+
+/* Layout alternado (izquierda/derecha) */
+.layout-alternate {
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+@media (min-width: 768px) {
+  .layout-alternate {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .layout-alternate > div {
+    width: 50%;
+  }
+}
+
+/* Countdown grid */
+.countdown-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  gap: 1rem;
+  justify-items: center;
+}
+
+/* Responsive flex para redes y botones */
+.flex-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .flex-center {
+    flex-direction: row;
+  }
+}
