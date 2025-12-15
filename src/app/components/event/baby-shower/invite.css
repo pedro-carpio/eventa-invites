@@ -8,6 +8,14 @@
   margin: 0;
 }
 
+.countdown {
+  font-size: 48px;
+}
+
+.countdown-text {
+  font-size: 14px;
+}
+
 /* Espaciado vertical entre secciones */
 .section-gap {
   gap: 1.5rem;

@@ -47,12 +47,12 @@ const BABY_SHOWER_INVITE_MOCK_DATA: BabyShower = {
   // ========== UBICACIÓN DEL EVENTO ==========
   venue: {
     name: 'El país de las maravillas',
-    address: 'En tus sueños bb', // Pendiente completar
+    address: 'Casita de Belen', // Pendiente completar
     city: 'Cochabamba',
     country: 'Bolivia',
     state: undefined, // TODO: Agregar si es necesario
-    latitude: undefined, // TODO: Agregar coordenadas
-    longitude: undefined, // TODO: Agregar coordenadas
+    latitude: -17.3925813, // TODO: Agregar coordenadas
+    longitude: -66.1182932, // TODO: Agregar coordenadas
     instructions: 'El trufi 43 te deja cerca.', // Pendiente completar
   },
 

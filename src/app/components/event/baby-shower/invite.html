@@ -1,6 +1,6 @@
 <div
   class="flex flex-col items-center justify-center min-h-screen"
-  style="background-color: #7fc29b"
+  style="background-color: #f4f1f8"
 >
   <div
     class="container-invite flex flex-col items-center w-full rounded-2xl overflow-y-hidden overflow-x-hidden"
@@ -16,7 +16,7 @@
       <!-- Hola solo en md+ (dentro de los banderines) -->
       <h2
         class="hidden md:block typography-h2 text-center px-4 py-2 rounded-lg"
-        style="background-color: #f4f1f8; font-size: 80px"
+        style="background-color: #f4f1f8; font-size: 64px"
       >
         ¡Hola!
       </h2>
@@ -32,7 +32,7 @@
       <!-- Título "Hola" solo en móviles (md:hidden) -->
       <h2
         class="md:hidden typography-h2 text-center px-4 py-2 rounded-lg"
-        style="background-color: #f4f1f8; font-size: 80px"
+        style="background-color: #f4f1f8; font-size: 48px"
       >
         ¡Hola!
       </h2>
@@ -49,7 +49,7 @@
     <div class="w-full flex flex-col gap-4 items-center px-4 md:px-0">
       <!-- Imagen arriba -->
       <div class="w-full flex justify-end">
-        <img src="/hongo-casitas.webp" alt="Decoración" class="w-full max-w-2xl object-cover" />
+        <img src="/hongo-casitas.webp" alt="Decoración" class="w-full max-w-40 object-cover" />
       </div>
 
       <!-- Contenido abajo -->
@@ -64,17 +64,17 @@
     </div>
 
     <!-- 4. Imagen + Contenido Descriptivo -->
-    <div class="w-full max-w-4xl relative mt-32 sm:mt-24 md:mt-20 h-48 md:h-64">
+    <div class="w-full max-w-4xl relative h-90 md:h-75 sm:h-48">
       <!-- Fondo de ancho completo (z-index bajo) -->
       <div class="absolute inset-0 section-container z-0"></div>
 
       <!-- Imagen (z-index bajo) -->
-      <div class="absolute left-0 top-0 z-0">
-        <img src="/hojas.webp" alt="Decoración" class="h-48 md:h-64 object-cover" />
+      <div class="absolute left-0 top-0 z-0 mt-10">
+        <img src="/hojas.webp" alt="Decoración" class="h-24 md:h-32 object-cover" />
       </div>
 
       <!-- Contenido (z-index alto, sangra sobre la imagen) -->
-      <div class="absolute inset-0 z-10 flex flex-col gap-3 justify-end px-4 py-6">
+      <div class="absolute inset-0 z-10 flex flex-col gap-3 justify-end px-4 py-6 mt-32 sm:mt-24 md:mt-20">
         <div class="flex justify-end">
           <div class="w-full md:w-4/5">
             <p class="typography-3 text-center px-4">
@@ -93,7 +93,7 @@
     </div>
 
     <!-- 5. Sección Derecha - ¿Cuándo? -->
-    <div class="w-full max-w-2xl relative h-48 md:h-64">
+    <div class="w-full max-w-2xl relative h-64 md:h-64">
       <!-- Fondo de ancho completo (z-index bajo) -->
       <div class="absolute inset-0 section-container z-0"></div>
 
@@ -102,7 +102,7 @@
         <img
           src="/hojas.webp"
           alt="Decoración"
-          class="h-48 md:h-64 object-cover"
+          class="h-24 md:h-32 object-cover"
           style="transform: scaleX(-1)"
         />
       </div>
@@ -112,7 +112,7 @@
         <div class="flex justify-start">
           <div class="w-3/5">
             <h2 class="typography-h2 text-left">¿Cuándo?</h2>
-            <p class="typography-2 text-left">
+            <p class="typography-2 text-left my-4">
               20 de diciembre<br />
               a partir de las 5 pm<br />
               en el país de las maravillas
@@ -140,7 +140,7 @@
         />
       </div>
 
-      <div class="section-container text-center max-w-xs">
+      <div class="section-container text-center max-w-xs" style="margin-top: -2em;">
         <p class="typography-2 mb-3" style="color: #7fc29b; font-size: 80px">VERDE</p>
         <p class="typography-3 mb-4">
           para nosotros el verde significa:
@@ -163,7 +163,7 @@
           alt="Decoración"
           class="w-16 h-16 md:w-32 md:h-32 object-cover"
         />
-        <img src="/luna.webp" alt="Decoración" class="w-16 h-16 md:w-32 md:h-32 object-cover" />
+        <img src="/luna.webp" alt="Decoración" class="w-32 h-32 md:w-48 md:h-48 object-cover" />
       </div>
     </div>
 
@@ -181,7 +181,7 @@
         aca te dejo algunas
         <a (click)="openGiftsModal()" class="link-accent cursor-pointer">ideas</a>
         y por supuesto nuestra
-        <a class="link-accent">lista de deseos</a>
+        <a class="link-accent" href="https://www.casaideas.com.bo/customer/event/event-details/baby-shower-de-belen-y-wawita-267" target="_blank">lista de deseos</a>
       </p>
 
       <p class="typography-3 text-center px-4">
@@ -202,11 +202,11 @@
     </div>
 
     <!-- 8. Imagen central -->
-    <div class="w-full max-w-2xl flex items-center justify-center gap-4">
+    <div class="w-full max-w-40 flex items-center justify-center gap-4">
       <img
         src="/hongos.webp"
         alt="Decoración"
-        class="w-full max-w-2xl mx-auto rounded-l object-cover"
+        class="w-full max-w-xs mx-auto rounded-l object-cover"
       />
     </div>
 
@@ -224,7 +224,7 @@
       </p>
 
       <div class="text-center mb-4">
-        <button (click)="openWhatsappRsvp()" class="btn-accent">Registrate aquí</button>
+        <a href="https://forms.gle/15NNn951FAqbL1Hf8" target="_blank" class="btn-accent">Registrate aquí</a>
       </div>
 
       <p class="typography-3 mb-10">
@@ -248,9 +248,9 @@
     </div>
 
     <!-- 11. Contacto -->
-    <div class="w-full max-w-2xl text-center m">
+    <div class="w-full max-w-2xl text-center h-24">
       <p class="typography-2 mb-3">¿Tienes alguna duda o dato que deba saber?</p>
-      <a href="https://instagram.com/la_china_supay" target="_blank" class="link-accent">hablame</a>
+      <a href="https://instagram.com/la_china_supay" target="_blank" class="btn-accent">hablame</a>
     </div>
 
     <!-- 12. Despedida -->
@@ -287,20 +287,20 @@
 
       <div class="flex justify-center gap-4 flex-wrap">
         <div>
-          <p class="typography-h2">{{ timeRemaining().days }}</p>
-          <p class="typography-2">DÍAS,</p>
+          <p class="typography-h2 countdown">{{ timeRemaining().days }}</p>
+          <p class="typography-2 countdown-text">DÍAS,</p>
         </div>
         <div>
-          <p class="typography-h2">{{ timeRemaining().hours }}</p>
-          <p class="typography-2">HRS,</p>
+          <p class="typography-h2 countdown">{{ timeRemaining().hours }}</p>
+          <p class="typography-2 countdown-text">HRS,</p>
         </div>
         <div>
-          <p class="typography-h2">{{ timeRemaining().minutes }}</p>
-          <p class="typography-2">MIN,</p>
+          <p class="typography-h2 countdown">{{ timeRemaining().minutes }}</p>
+          <p class="typography-2 countdown-text">MIN,</p>
         </div>
         <div>
-          <p class="typography-h2">{{ timeRemaining().seconds }}</p>
-          <p class="typography-2">SEG</p>
+          <p class="typography-h2 countdown">{{ timeRemaining().seconds }}</p>
+          <p class="typography-2 countdown-text">SEG</p>
         </div>
       </div>
     </div>
@@ -309,7 +309,7 @@
     <img
       src="/casita-hongo.webp"
       alt="Decoración"
-      class="w-full max-w-3xl rounded-l object-cover"
+      class="w-full max-w-40 rounded-l object-cover"
     />
 
     <!-- Location Modal -->
