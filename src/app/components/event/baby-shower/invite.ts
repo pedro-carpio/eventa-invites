@@ -175,7 +175,7 @@ const BABY_SHOWER_INVITE_MOCK_DATA: BabyShower = {
       giftListTag: 'También tengo una lista de deseos',
 
       // REGALO COLECTIVO / VAQUITA
-      collectiveGiftTitle: 'Regalo Colectivo - Vaquita',
+      collectiveGiftTitle: 'Regalo Colectivo',
       collectiveGiftDescription:
         'Estamos haciendo vaquita para comprar lo necesario. Lo dejamos a tu cariño ❤',
       collectiveGiftButtonTag: 'Unirme a la vaquita',

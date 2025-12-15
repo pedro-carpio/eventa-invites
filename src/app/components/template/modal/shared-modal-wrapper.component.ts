@@ -11,12 +11,12 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule],
   template: `
     <div
-      class="fixed inset-0 z-50 flex items-center justify-center bg-gray-500 bg-opacity-40 backdrop-blur-sm"
+      class="fixed inset-0 z-50 flex items-center justify-center bg-gray-500 bg-opacity-10 backdrop-blur-sm"
       (click)="onBackdropClick()"
       *ngIf="isOpen()"
     >
       <div
-        class="bg-white rounded-lg m-4 max-w-md w-full shadow-xl max-h-[90vh] overflow-y-auto"
+        class="bg-white rounded-lg m-4 max-w-4xl w-full shadow-xl max-h-[95vh] overflow-y-auto"
         (click)="$event.stopPropagation()"
       >
         <ng-content></ng-content>

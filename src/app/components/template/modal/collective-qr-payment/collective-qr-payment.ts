@@ -4,8 +4,9 @@ import { ChangeDetectionStrategy, Component, input, output } from '@angular/core
   selector: 'app-collective-qr-payment',
   imports: [],
   template: `
-    <div class="modal-container">
-      <div class="flex justify-between items-start">
+    <div class="modal-container md:flex md:gap-6 md:items-stretch">
+      <!-- Encabezado (full width en móvil) -->
+      <div class="md:hidden flex justify-between items-start mb-4 w-full">
         <h2 class="typography-h2">{{ title() }}</h2>
         <button
           (click)="onClose()"
@@ -17,37 +18,85 @@ import { ChangeDetectionStrategy, Component, input, output } from '@angular/core
         </button>
       </div>
 
-      <p class="typography-2 mb-4">{{ description() }}</p>
-
+      <!-- QR a la izquierda (50% en md+) -->
       @if (qrCodeUrl()) {
-        <div class="space-y-4">
+        <div
+          class="md:w-1/2 md:h-auto md:min-h-80 lg:min-h-96 4xl:min-h-[28rem] flex flex-col items-center justify-center bg-gray-100 rounded-lg p-4 md:p-6 mb-4 md:mb-0"
+        >
           <img
             [src]="qrCodeUrl()"
             alt="Código QR para pago colectivo"
-            class="w-full max-w-xs mx-auto"
+            class="w-full max-w-xs md:max-w-sm lg:max-w-md 4xl:max-w-lg aspect-square object-contain"
           />
 
-          @if (paymentInstructions()) {
-            <p class="typography-3">{{ paymentInstructions() }}</p>
-          }
-
-          <div class="flex gap-2 flex-wrap justify-center">
-            <button (click)="copyQRCode()" type="button" class="btn-accent">Descargar QR</button>
-            <button (click)="shareQR()" type="button" class="btn-accent">Compartir</button>
+          <div class="flex gap-2 flex-wrap justify-center mt-4 md:mt-6">
+            <button
+              (click)="copyQRCode()"
+              type="button"
+              class="btn-accent text-sm md:text-base py-2 md:py-3 px-3 md:px-4 hover:scale-105 transition-transform"
+            >
+              Descargar
+            </button>
+            <button
+              (click)="shareQR()"
+              type="button"
+              class="btn-accent text-sm md:text-base py-2 md:py-3 px-3 md:px-4 hover:scale-105 transition-transform"
+            >
+              Compartir
+            </button>
           </div>
         </div>
-      } @else if (contactWhatsapp()) {
-        <div>
-          <p class="typography-3">Puedes contactarme para participar en el regalo colectivo.</p>
-        </div>
       } @else {
-        <p class="typography-3">No hay información de pago disponible</p>
+        <div
+          class="md:w-1/2 md:h-auto md:min-h-80 lg:min-h-96 4xl:min-h-[28rem] flex items-center justify-center bg-gray-200 rounded-lg mb-4 md:mb-0"
+        >
+          <p class="typography-3 text-gray-600">No hay QR disponible</p>
+        </div>
       }
 
-      <div class="mt-4 text-center">
-        <a [href]="whatsappUrl()" target="_blank" rel="noopener noreferrer" class="link-accent">
-          Escribir a WhatsApp
-        </a>
+      <!-- Información a la derecha (50% en md+) -->
+      <div
+        class="space-y-4 md:space-y-5 md:w-1/2 md:flex md:flex-col md:justify-between bg-gradient-to-br from-gray-50 to-gray-100 p-4 md:p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
+      >
+        <div>
+          <!-- Encabezado para desktop -->
+          <div class="hidden md:flex justify-between items-start mb-4">
+            <h2 class="typography-h2">{{ title() }}</h2>
+            <button
+              (click)="onClose()"
+              type="button"
+              aria-label="Cerrar modal"
+              class="btn-accent text-sm px-3 py-1 md:px-4 md:py-2 flex-shrink-0 hover:scale-110 transition-transform"
+            >
+              ✕
+            </button>
+          </div>
+
+          <p class="typography-2 mb-3 md:mb-4">{{ description() }}</p>
+
+          @if (paymentInstructions()) {
+            <p class="typography-3 text-gray-700">{{ paymentInstructions() }}</p>
+          }
+        </div>
+
+        <div class="space-y-3">
+          <!-- Botón WhatsApp mejorado -->
+          <a
+            [href]="whatsappUrl()"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="link-accent block text-center py-3 md:py-4 px-4 md:px-6 bg-white hover:bg-green-50 rounded-lg font-semibold transition-all duration-200 hover:scale-105 shadow-sm hover:shadow-md"
+          >
+            Escribir a WhatsApp →
+          </a>
+
+          <!-- Fallback para cuando no hay QR -->
+          @if (!qrCodeUrl() && contactWhatsapp()) {
+            <p class="typography-3 text-gray-600 text-center">
+              Puedes contactarme para participar en el regalo colectivo.
+            </p>
+          }
+        </div>
       </div>
     </div>
   `,
