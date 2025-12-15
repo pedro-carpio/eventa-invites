@@ -11,7 +11,7 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule],
   template: `
     <div
-      class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm"
+      class="fixed inset-0 z-50 flex items-center justify-center bg-gray-500 bg-opacity-40 backdrop-blur-sm"
       (click)="onBackdropClick()"
       *ngIf="isOpen()"
     >

@@ -12,6 +12,7 @@ import { BabyShower } from '../../../types/event/baby-shower.types';
 import { LocationModal } from '../../template/modal/location-modal/location-modal';
 import { SharedModalWrapperComponent } from '../../template/modal/shared-modal-wrapper.component';
 import { CollectiveQrPayment } from '../../template/modal/collective-qr-payment/collective-qr-payment';
+import { GiftsGalleryModal } from '../../template/modal/gifts-gallery-modal/gifts-gallery-modal';
 
 /**
  * ============================================================================
@@ -165,7 +166,7 @@ const BABY_SHOWER_INVITE_MOCK_DATA: BabyShower = {
       ],
 
       // QR PARA PAGO COLECTIVO
-      paymentQrCodeUrl: 'TODO: URL del QR para pago colectivo',
+      paymentQrCodeUrl: 'croac-qr-code.png',
       paymentQrCodeInstructions:
         'Escanea el código QR para contribuir con un regalo o aportación. Lo dejamos a tu cariño ❤',
 
@@ -239,7 +240,13 @@ const BABY_SHOWER_INVITE_MOCK_DATA: BabyShower = {
 @Component({
   selector: 'app-invite-demo',
   standalone: true,
-  imports: [CommonModule, LocationModal, SharedModalWrapperComponent, CollectiveQrPayment],
+  imports: [
+    CommonModule,
+    LocationModal,
+    SharedModalWrapperComponent,
+    CollectiveQrPayment,
+    GiftsGalleryModal,
+  ],
   templateUrl: './invite.html',
   styleUrls: ['./invite.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -251,6 +258,7 @@ export class InviteDemo {
   eventData = signal<BabyShower | undefined>(undefined);
   isLocationModalOpen = signal<boolean>(false);
   isCollectiveQrModalOpen = signal<boolean>(false);
+  isGiftsModalOpen = signal<boolean>(false);
 
   // Señal para forzar actualización del contador (se incrementa cada segundo)
   private readonly currentTime = signal<number>(Date.now());
@@ -387,6 +395,15 @@ vida silvestre
 botánica
 dinosaurios (esos ya no cuentan como vivos jeje)`;
 
+  /**
+   * Ideas de regalos para mostrar en la galería
+   * Source: BABY_SHOWER_INVITE_MOCK_DATA.sections.gift?.ideas
+   */
+  readonly giftIdeas = computed(() => {
+    const event = this.eventData();
+    return event?.sections.gift?.ideas || [];
+  });
+
   constructor() {
     this.loadEventData();
     // Configurar actualización automática del contador cada segundo
@@ -450,6 +467,21 @@ dinosaurios (esos ya no cuentan como vivos jeje)`;
    */
   closeCollectiveQrModal(): void {
     this.isCollectiveQrModalOpen.set(false);
+  }
+
+  /**
+   * Abre el modal de galería de regalos
+   * Muestra ideas de regalos desde BABY_SHOWER_INVITE_MOCK_DATA.sections.gift?.ideas
+   */
+  openGiftsModal(): void {
+    this.isGiftsModalOpen.set(true);
+  }
+
+  /**
+   * Cierra el modal de galería de regalos
+   */
+  closeGiftsModal(): void {
+    this.isGiftsModalOpen.set(false);
   }
 
   /**

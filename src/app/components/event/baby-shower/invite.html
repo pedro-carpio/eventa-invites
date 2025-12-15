@@ -28,7 +28,7 @@
 
     <!-- 2. Imagen + Quote -->
     <div class="w-full max-w-2xl flex flex-col items-center gap-4">
-      <img src="/croac.webp" alt="Sapito" class="w-full max-w-xs rounded-l object-cover" />
+      <img src="/croac.webp" alt="Sapito" class="w-full max-w-xs object-cover" />
       <p class="typography-2 text-center px-4">
         <span class="text-2xl" style="color: #7fc29b">"</span>
         Pequeños charcos de agua, hojas frescas y el dulce croar anuncian la llegada de mi retoño
@@ -40,7 +40,7 @@
     <div class="w-full max-w-2xl flex flex-col gap-4 items-center">
       <!-- Imagen arriba -->
       <div class="w-full flex justify-end">
-        <img src="/croac.webp" alt="Decoración" class="w-full max-w-xs rounded-l object-cover" />
+        <img src="/croac.webp" alt="Decoración" class="w-full max-w-xs object-cover" />
       </div>
 
       <!-- Contenido abajo -->
@@ -61,7 +61,7 @@
 
       <!-- Imagen (z-index bajo) -->
       <div class="absolute left-0 top-0 z-0">
-        <img src="/croac.webp" alt="Decoración" class="h-32 md:h-48 rounded-l object-cover" />
+        <img src="/croac.webp" alt="Decoración" class="h-32 md:h-48 object-cover" />
       </div>
 
       <!-- Contenido (z-index alto, sangra sobre la imagen) -->
@@ -90,7 +90,7 @@
 
       <!-- Imagen (z-index bajo, derecha) -->
       <div class="absolute right-0 top-0 z-0">
-        <img src="/croac.webp" alt="Decoración" class="h-32 md:h-48 rounded-r object-cover" />
+        <img src="/croac.webp" alt="Decoración" class="h-32 md:h-48 bject-cover" />
       </div>
 
       <!-- Contenido (z-index alto, sangra sobre la imagen) -->
@@ -135,16 +135,8 @@
       </p>
 
       <div class="flex gap-4 justify-between w-full">
-        <img
-          src="/croac.webp"
-          alt="Decoración"
-          class="w-12 h-12 md:w-16 md:h-16 rounded-full object-cover"
-        />
-        <img
-          src="/croac.webp"
-          alt="Decoración"
-          class="w-12 h-12 md:w-16 md:h-16 rounded-full object-cover"
-        />
+        <img src="/croac.webp" alt="Decoración" class="w-12 h-12 md:w-16 md:h-16 object-cover" />
+        <img src="/croac.webp" alt="Decoración" class="w-12 h-12 md:w-16 md:h-16 object-cover" />
       </div>
     </div>
 
@@ -160,7 +152,7 @@
 
       <p class="typography-3 text-center px-4">
         aca te dejo algunas
-        <a class="link-accent">ideas</a>
+        <a (click)="openGiftsModal()" class="link-accent cursor-pointer">ideas</a>
         y por supuesto nuestra
         <a class="link-accent">lista de deseos</a>
       </p>
@@ -221,11 +213,7 @@
         class="flex-1 h-0.5"
         style="background: linear-gradient(to right, #7fc29b, transparent)"
       ></svg>
-      <img
-        src="/croac.webp"
-        alt="Decoración"
-        class="w-12 h-12 md:w-16 md:h-16 rounded-full object-cover"
-      />
+      <img src="/croac.webp" alt="Decoración" class="w-12 h-12 md:w-16 md:h-16 object-cover" />
       <svg
         class="flex-1 h-0.5"
         style="background: linear-gradient(to left, #7fc29b, transparent)"
@@ -259,11 +247,7 @@
         class="flex-1 h-0.5"
         style="background: linear-gradient(to right, #7fc29b, transparent)"
       ></svg>
-      <img
-        src="/croac.webp"
-        alt="Decoración"
-        class="w-12 h-12 md:w-16 md:h-16 rounded-full object-cover"
-      />
+      <img src="/croac.webp" alt="Decoración" class="w-12 h-12 md:w-16 md:h-16 object-cover" />
       <svg
         class="flex-1 h-0.5"
         style="background: linear-gradient(to left, #7fc29b, transparent)"
@@ -326,6 +310,21 @@
             (close)="closeCollectiveQrModal()"
           ></app-collective-qr-payment>
         }
+      </app-shared-modal-wrapper>
+    }
+
+    <!-- Gifts Gallery Modal -->
+    @if (isGiftsModalOpen()) {
+      <app-shared-modal-wrapper (close)="closeGiftsModal()" [isOpen]="isGiftsModalOpen()">
+        <app-gifts-gallery-modal
+          [giftIdeas]="giftIdeas()"
+          [title]="'Ideas de regalos para mi bebé'"
+          [description]="
+            'Aquí hay algunas ideas que nos encantarían... pero tu presencia es lo más importante'
+          "
+          [autoRotate]="false"
+          (close)="closeGiftsModal()"
+        ></app-gifts-gallery-modal>
       </app-shared-modal-wrapper>
     }
   </div>
